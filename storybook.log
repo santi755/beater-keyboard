@@ -1,0 +1,70 @@
+npm ERR! code 1
+npm ERR! path /home/santiago/Projects/beater-keyboard/node_modules/esbuild
+npm ERR! command failed
+npm ERR! command sh -c node install.js
+npm ERR! node:internal/errors:865
+npm ERR!   const err = new Error(message);
+npm ERR!               ^
+npm ERR! 
+npm ERR! Error: Command failed: /home/santiago/.nvm/versions/node/v20.5.0/bin/node /home/santiago/Projects/beater-keyboard/node_modules/esbuild/bin/esbuild --version
+npm ERR! 
+npm ERR! node:internal/process/esm_loader:46
+npm ERR!       internalBinding('errors').triggerUncaughtException(
+npm ERR!                                 ^
+npm ERR! TypeError [ERR_UNKNOWN_FILE_EXTENSION]: Unknown file extension "" for /home/santiago/Projects/beater-keyboard/node_modules/esbuild/bin/esbuild
+npm ERR!     at new NodeError (node:internal/errors:405:5)
+npm ERR!     at Object.getFileProtocolModuleFormat [as file:] (node:internal/modules/esm/get_format:99:9)
+npm ERR!     at defaultGetFormat (node:internal/modules/esm/get_format:142:36)
+npm ERR!     at defaultLoad (node:internal/modules/esm/load:91:20)
+npm ERR!     at nextLoad (node:internal/modules/esm/hooks:733:28)
+npm ERR!     at load$1 (file:///tmp/xfs-360abf01/dlx-8683/.pnp.loader.mjs:1487:12)
+npm ERR!     at nextLoad (node:internal/modules/esm/hooks:733:28)
+npm ERR!     at Hooks.load (node:internal/modules/esm/hooks:377:26)
+npm ERR!     at MessagePort.handleMessage (node:internal/modules/esm/worker:168:24)
+npm ERR!     at [nodejs.internal.kHybridDispatch] (node:internal/event_target:778:20) {
+npm ERR!   code: 'ERR_UNKNOWN_FILE_EXTENSION'
+npm ERR! }
+npm ERR! 
+npm ERR! Node.js v20.5.0
+npm ERR! 
+npm ERR!     at checkExecSyncError (node:child_process:887:11)
+npm ERR!     at Object.execFileSync (node:child_process:923:15)
+npm ERR!     at validateBinaryVersion (/home/santiago/Projects/beater-keyboard/node_modules/esbuild/install.js:98:28)
+npm ERR!     at /home/santiago/Projects/beater-keyboard/node_modules/esbuild/install.js:283:5 {
+npm ERR!   status: 1,
+npm ERR!   signal: null,
+npm ERR!   output: [
+npm ERR!     null,
+npm ERR!     Buffer(0) [Uint8Array] [],
+npm ERR!     Buffer(1004) [Uint8Array] [
+npm ERR!        10, 110, 111, 100, 101,  58, 105, 110, 116, 101, 114, 110,
+npm ERR!        97, 108,  47, 112, 114, 111,  99, 101, 115, 115,  47, 101,
+npm ERR!       115, 109,  95, 108, 111,  97, 100, 101, 114,  58,  52,  54,
+npm ERR!        10,  32,  32,  32,  32,  32,  32, 105, 110, 116, 101, 114,
+npm ERR!       110,  97, 108,  66, 105, 110, 100, 105, 110, 103,  40,  39,
+npm ERR!       101, 114, 114, 111, 114, 115,  39,  41,  46, 116, 114, 105,
+npm ERR!       103, 103, 101, 114,  85, 110,  99,  97, 117, 103, 104, 116,
+npm ERR!        69, 120,  99, 101, 112, 116, 105, 111, 110,  40,  10,  32,
+npm ERR!        32,  32,  32,  32,
+npm ERR!       ... 904 more items
+npm ERR!     ]
+npm ERR!   ],
+npm ERR!   pid: 10305,
+npm ERR!   stdout: Buffer(0) [Uint8Array] [],
+npm ERR!   stderr: Buffer(1004) [Uint8Array] [
+npm ERR!      10, 110, 111, 100, 101,  58, 105, 110, 116, 101, 114, 110,
+npm ERR!      97, 108,  47, 112, 114, 111,  99, 101, 115, 115,  47, 101,
+npm ERR!     115, 109,  95, 108, 111,  97, 100, 101, 114,  58,  52,  54,
+npm ERR!      10,  32,  32,  32,  32,  32,  32, 105, 110, 116, 101, 114,
+npm ERR!     110,  97, 108,  66, 105, 110, 100, 105, 110, 103,  40,  39,
+npm ERR!     101, 114, 114, 111, 114, 115,  39,  41,  46, 116, 114, 105,
+npm ERR!     103, 103, 101, 114,  85, 110,  99,  97, 117, 103, 104, 116,
+npm ERR!      69, 120,  99, 101, 112, 116, 105, 111, 110,  40,  10,  32,
+npm ERR!      32,  32,  32,  32,
+npm ERR!     ... 904 more items
+npm ERR!   ]
+npm ERR! }
+npm ERR! 
+npm ERR! Node.js v20.5.0
+
+npm ERR! A complete log of this run can be found in: /home/santiago/.npm/_logs/2023-12-11T19_18_58_720Z-debug-0.log
