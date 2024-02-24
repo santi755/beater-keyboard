@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { OctaveButton } from "../../components/atoms/OctaveButton";
+import { OctaveButton } from "../../components/keyboard/atoms/OctaveButton";
 
 const meta = {
   title: "Atoms/OctaveButton",

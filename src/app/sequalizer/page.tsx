@@ -25,7 +25,21 @@ export default function Sequalizer() {
         onMouseUp={() => guitar?.stopSound("C4")}
         onMouseLeave={() => guitar?.stopSound("C4")}
         >Play C4</button>
-      <NoteButton />
+      <button
+        onMouseDown={() => guitar?.playSound("D4", "8")}
+        onMouseUp={() => guitar?.stopSound("D4")}
+        onMouseLeave={() => guitar?.stopSound("D4")}
+        >Play D4</button>
+      <button
+        onMouseDown={() => guitar?.playSound("A4", "8")}
+        onMouseUp={() => guitar?.stopSound("A4")}
+        onMouseLeave={() => guitar?.stopSound("A4")}
+        >Play A4</button>
+      <button
+        onMouseDown={() => guitar?.playSound("B4", "8")}
+        onMouseUp={() => guitar?.stopSound("B4")}
+        onMouseLeave={() => guitar?.stopSound("B4")}
+        >Play B4</button>
     </main>
   );
 }
