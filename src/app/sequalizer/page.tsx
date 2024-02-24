@@ -23,6 +23,7 @@ export default function Sequalizer() {
       <button
         onMouseDown={() => guitar?.playSound("C4", "8")}
         onMouseUp={() => guitar?.stopSound("C4")}
+        onMouseLeave={() => guitar?.stopSound("C4")}
         >Play C4</button>
       <NoteButton />
     </main>
