@@ -13,7 +13,7 @@ export default class ToneSoundPlayer implements SoundPlayer {
   }
 
   playSound(note: string, duration: string): void {
-    this.synth.triggerAttackRelease(note, duration);
+    this.synth.triggerAttackRelease(note, '10m');
   }
 
   stopSound(note: string): void {
