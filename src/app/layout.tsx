@@ -5,8 +5,8 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Sequalizer',
-  description: 'A simple sequalizer app built with Next.js and Tone.js',
+  title: 'Sequencer',
+  description: 'A simple sequencer app built with Next.js and Tone.js',
 };
 
 export default function RootLayout({
