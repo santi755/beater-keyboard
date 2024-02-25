@@ -9,8 +9,8 @@ interface KeyButtonProps {
 export const KeyButton = ({ noteType, text, ...props }: KeyButtonProps) => {
   const buttonClass =
     noteType === 'white'
-      ? 'w-32 bg-white py-1 text-black'
-      : 'w-20 bg-black py-0 text-white';
+      ? 'w-32 bg-white py-1 text-black h-8'
+      : 'w-20 bg-black py-0 text-white h-6 -mt-3 -mb-3 z-10';
 
   return (
     <button

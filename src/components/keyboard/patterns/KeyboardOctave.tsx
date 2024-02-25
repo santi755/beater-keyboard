@@ -8,31 +8,69 @@ interface KeyButtonProps {
 }
 
 export const KeyboardOctave = ({ ...props }: KeyButtonProps) => {
-  const notes = [
-    'C',
-    'C#',
-    'D',
-    'D#',
-    'E',
-    'F',
-    'F#',
-    'G',
-    'G#',
-    'A',
-    'A#',
-    'B',
+  const noteList: { value: string; type: 'white' | 'black' }[] = [
+    {
+      value: 'B',
+      type: 'white',
+    },
+    {
+      value: 'A#',
+      type: 'black',
+    },
+    {
+      value: 'A',
+      type: 'white',
+    },
+    {
+      value: 'G#',
+      type: 'black',
+    },
+    {
+      value: 'G',
+      type: 'white',
+    },
+    {
+      value: 'F#',
+      type: 'black',
+    },
+    {
+      value: 'F',
+      type: 'white',
+    },
+    {
+      value: 'E',
+      type: 'white',
+    },
+    {
+      value: 'D#',
+      type: 'black',
+    },
+    {
+      value: 'D',
+      type: 'white',
+    },
+    {
+      value: 'C#',
+      type: 'black',
+    },
+    {
+      value: 'C',
+      type: 'white',
+    },
   ];
 
   return (
-    <div className='d-flex'>
-      {notes.map((note) => (
+    <div className='grid grid-cols-1'>
+      {noteList.map((note) => (
         <KeyButton
-          key={`${note}${props.octave}`}
-          text={`${note}${props.octave}`}
-          onMouseDown={() => props.onMouseDown(`${note}${props.octave}`)}
-          onMouseUp={() => props.onMouseUp(`${note}${props.octave}`)}
-          onMouseLeave={() => props.onMouseLeave(`${note}${props.octave}`)}
-          noteType={note.includes('#') ? 'black' : 'white'}
+          key={`${note.value}${props.octave}`}
+          text={`${note.value}${props.octave}`}
+          onMouseDown={() => props.onMouseDown(`${note.value}${props.octave}`)}
+          onMouseUp={() => props.onMouseUp(`${note.value}${props.octave}`)}
+          onMouseLeave={() =>
+            props.onMouseLeave(`${note.value}${props.octave}`)
+          }
+          noteType={note.type}
         />
       ))}
     </div>
