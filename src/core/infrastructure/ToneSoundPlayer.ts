@@ -1,5 +1,5 @@
-import * as Tone from "tone";
-import SoundPlayer from "@/core/domain/SoundPlayer";
+import * as Tone from 'tone';
+import SoundPlayer from '@/core/domain/SoundPlayer';
 
 export default class ToneSoundPlayer implements SoundPlayer {
   constructor(

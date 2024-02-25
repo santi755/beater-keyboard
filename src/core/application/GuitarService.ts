@@ -1,9 +1,9 @@
-import SoundPlayer from "@/core/domain/SoundPlayer";
+import SoundPlayer from '@/core/domain/SoundPlayer';
 
 const config = {
   oscillator: {
-    type: "fmsquare",
-    modulationType: "sawtooth",
+    type: 'fmsquare',
+    modulationType: 'sawtooth',
     modulationIndex: 3,
     harmonicity: 3.4,
   },
