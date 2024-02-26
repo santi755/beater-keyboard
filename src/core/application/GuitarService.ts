@@ -20,7 +20,7 @@ export default class GuitarService {
     this.soundPlayer.initializeInstrument(config);
   }
 
-  playSound(note: string, duration: string): void {
+  playSound(note: string, duration?: string): void {
     this.soundPlayer.playSound(note, duration);
   }
 

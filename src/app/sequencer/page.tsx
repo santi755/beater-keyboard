@@ -20,7 +20,7 @@ export default function Sequencer() {
   return (
     <main>
       <KeyboardOctave
-        onMouseDown={(note: string) => guitar?.playSound(note, '2')}
+        onMouseDown={(note: string) => guitar?.playSound(note)}
         onMouseUp={(note: string) => guitar?.stopSound(note)}
         onMouseLeave={(note: string) => guitar?.stopSound(note)}
         octave={4}

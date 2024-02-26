@@ -8,6 +8,7 @@ interface KeyButtonProps {
 }
 
 export const KeyboardOctave = ({ ...props }: KeyButtonProps) => {
+  // Move this configuration to a separate file
   const noteList: { value: string; type: 'white' | 'black' }[] = [
     {
       value: 'B',

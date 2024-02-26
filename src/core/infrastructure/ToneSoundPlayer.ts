@@ -12,9 +12,8 @@ export default class ToneSoundPlayer implements SoundPlayer {
     this.synth.set(config);
   }
 
-  playSound(note: string, duration: string): void {
-    const INFINITE_DURATION = '10m';
-    this.synth.triggerAttackRelease(note, INFINITE_DURATION);
+  playSound(note: string, duration: string = '10m'): void {
+    this.synth.triggerAttackRelease(note, duration);
   }
 
   stopSound(note: string): void {
