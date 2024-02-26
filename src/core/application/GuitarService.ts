@@ -1,4 +1,5 @@
 import SoundPlayer from '@/core/domain/SoundPlayer';
+import InstrumentService from '@/core/domain/InstrumentService'
 
 const config = {
   oscillator: {
@@ -15,7 +16,7 @@ const config = {
   },
 };
 
-export default class GuitarService {
+export default class GuitarService implements InstrumentService {
   constructor(private soundPlayer: SoundPlayer) {
     this.soundPlayer.initializeInstrument(config);
   }

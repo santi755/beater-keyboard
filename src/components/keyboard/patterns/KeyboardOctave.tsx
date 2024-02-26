@@ -1,4 +1,4 @@
-import GuitarService from '@/core/application/GuitarService';
+import InstrumentService from '@/core/domain/InstrumentService';
 
 import { useInstrument } from '@/app/sequencer/page';
 import { keyboardNotes, Note } from '@/config/noteList';
@@ -24,7 +24,7 @@ export const KeyboardOctave = ({ ...props }: KeyButtonProps) => {
   );
 };
 
-function BuildKeyButton(note: Note, octave: number, instrument: GuitarService) {
+function BuildKeyButton(note: Note, octave: number, instrument: InstrumentService) {
   const keyNote = `${note.value}${octave}`;
   return (
     <KeyButton
