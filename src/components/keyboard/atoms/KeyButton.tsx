@@ -15,7 +15,7 @@ export const KeyButton = ({ noteType, text, ...props }: KeyButtonProps) => {
   return (
     <button
       type='button'
-      className={`w-32 text-align-right border border-black px-2 text-right text-xs rounded-r ${buttonClass}`}
+      className={`text-align-right w-32 rounded-r border border-black px-2 text-right text-xs ${buttonClass}`}
       {...props}
     >
       {text}

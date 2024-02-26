@@ -10,21 +10,26 @@ interface KeyButtonProps {
 }
 
 export const KeyboardOctave = ({ ...props }: KeyButtonProps) => {
-
   const instrument = useInstrument();
 
   return (
     <div className='grid grid-cols-1'>
       {
-      instrument
-        ? (keyboardNotes.map((note) => (BuildKeyButton(note, props.octave, instrument))))
-        : (null) // TODO: Loading
+        instrument
+          ? keyboardNotes.map((note) =>
+              BuildKeyButton(note, props.octave, instrument)
+            )
+          : null // TODO: Loading
       }
     </div>
   );
 };
 
-function BuildKeyButton(note: Note, octave: number, instrument: InstrumentService) {
+function BuildKeyButton(
+  note: Note,
+  octave: number,
+  instrument: InstrumentService
+) {
   const keyNote = `${note.value}${octave}`;
   return (
     <KeyButton
@@ -32,11 +37,8 @@ function BuildKeyButton(note: Note, octave: number, instrument: InstrumentServic
       text={keyNote}
       onMouseDown={() => instrument.playSound(keyNote)}
       onMouseUp={() => instrument.stopSound(keyNote)}
-      onMouseLeave={() =>
-        instrument.stopSound(keyNote)
-      }
+      onMouseLeave={() => instrument.stopSound(keyNote)}
       noteType={note.type}
     />
   );
-
 }

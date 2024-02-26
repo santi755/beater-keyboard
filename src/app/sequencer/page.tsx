@@ -12,7 +12,6 @@ const InstrumentContext = createContext<GuitarService | null>(null);
 export default function Sequencer() {
   const [instrument, setInstrument] = useState<GuitarService | null>(null);
 
-
   useEffect(() => {
     const toneSoundPlayer = new ToneSoundPlayer();
     const guitarService = new GuitarService(toneSoundPlayer);
