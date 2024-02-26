@@ -9,13 +9,13 @@ interface KeyButtonProps {
 export const KeyButton = ({ noteType, text, ...props }: KeyButtonProps) => {
   const buttonClass =
     noteType === 'white'
-      ? 'w-32 bg-white py-1 text-black h-8'
-      : 'w-20 bg-black py-0 text-white h-6 -mt-3 -mb-3 z-10';
+      ? 'bg-white py-1 text-black h-8'
+      : 'bg-black py-0 text-white h-8';
 
   return (
     <button
       type='button'
-      className={`text-align-right rounded border border-black px-2 text-right text-xs ${buttonClass}`}
+      className={`w-32 text-align-right border border-black px-2 text-right text-xs rounded-r ${buttonClass}`}
       {...props}
     >
       {text}

@@ -1,30 +1,34 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, createContext, useContext } from 'react';
 
 import GuitarService from '@/core/application/GuitarService';
 import ToneSoundPlayer from '@/core/infrastructure/ToneSoundPlayer';
 
-import { KeyboardOctave } from '@/components/keyboard/patterns/KeyboardOctave';
+import { Keyboard } from '@/components/keyboard/patterns/Keyboard';
+
+const InstrumentContext = createContext<GuitarService | null>(null);
 
 export default function Sequencer() {
-  const [guitar, setGuitar] = useState<GuitarService | null>(null);
+  const [instrument, setInstrument] = useState<GuitarService | null>(null);
+
 
   useEffect(() => {
     const toneSoundPlayer = new ToneSoundPlayer();
     const guitarService = new GuitarService(toneSoundPlayer);
 
-    setGuitar(guitarService);
+    setInstrument(guitarService);
   }, []);
 
   return (
-    <main>
-      <KeyboardOctave
-        onMouseDown={(note: string) => guitar?.playSound(note)}
-        onMouseUp={(note: string) => guitar?.stopSound(note)}
-        onMouseLeave={(note: string) => guitar?.stopSound(note)}
-        octave={4}
-      />
-    </main>
+    <InstrumentContext.Provider value={instrument}>
+      <Keyboard />
+    </InstrumentContext.Provider>
   );
+}
+
+export function useInstrument() {
+  const context = useContext(InstrumentContext);
+
+  return context;
 }
