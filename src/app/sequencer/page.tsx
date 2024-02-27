@@ -6,6 +6,7 @@ import GuitarService from '@/core/application/GuitarService';
 import ToneSoundPlayer from '@/core/infrastructure/ToneSoundPlayer';
 
 import { Keyboard } from '@/components/keyboard/patterns/Keyboard';
+import { Stepboard } from '@/components/keyboard/patterns/Stepboard';
 
 const InstrumentContext = createContext<GuitarService | null>(null);
 
@@ -21,7 +22,10 @@ export default function Sequencer() {
 
   return (
     <InstrumentContext.Provider value={instrument}>
-      <Keyboard />
+      <div className='flex'>
+        <Keyboard />
+        <Stepboard />
+      </div>
     </InstrumentContext.Provider>
   );
 }

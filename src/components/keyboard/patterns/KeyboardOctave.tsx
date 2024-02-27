@@ -9,7 +9,7 @@ interface KeyButtonProps {
   octave: number;
 }
 
-export const KeyboardOctave = ({ ...props }: KeyButtonProps) => {
+export const KeyboardOctave = ({ octave }: KeyButtonProps) => {
   const instrument = useInstrument();
 
   return (
@@ -17,7 +17,7 @@ export const KeyboardOctave = ({ ...props }: KeyButtonProps) => {
       {
         instrument
           ? keyboardNotes.map((note) =>
-              BuildKeyButton(note, props.octave, instrument)
+              BuildKeyButton(note, octave, instrument)
             )
           : null // TODO: Loading
       }

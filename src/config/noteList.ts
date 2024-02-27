@@ -3,6 +3,8 @@ export type Note = {
   type: 'white' | 'black';
 };
 
+export const keyboardNotesQuantity = 12;
+
 export const keyboardNotes: Note[] = [
   {
     value: 'B',
