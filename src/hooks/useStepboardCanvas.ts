@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 type InitializeGrid = {
   rowsQuantity: number;
@@ -20,7 +20,9 @@ export function useStepboardCanvas({
   colsQuantity,
 }: InitializeGrid) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const grid: boolean[][] = initializeGrid({ rowsQuantity, colsQuantity });
+  const [grid, setGrid] = useState<boolean[][]>(
+    initializeGrid({ rowsQuantity, colsQuantity })
+  );
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -49,13 +51,15 @@ export function useStepboardCanvas({
       const i = Math.floor(y / cellHeight);
       const j = Math.floor(x / cellWidth);
 
-      grid[i][j] = !grid[i][j];
-      console.log('entra al eventListener => ', grid);
+      const newGrid = [...grid];
+      newGrid[i][j] = !newGrid[i][j];
+      setGrid(newGrid);
+      console.log('entra al eventListener => ', { grid, i, j });
 
       drawGrid({
         context,
         canvas,
-        grid,
+        grid: newGrid,
         rowsQuantity,
         colsQuantity,
         cellWidth,
@@ -71,14 +75,10 @@ export function useStepboardCanvas({
 }
 
 function initializeGrid({ rowsQuantity, colsQuantity }: InitializeGrid) {
-  const grid: boolean[][] = [];
-  for (let i = 0; i < rowsQuantity; i++) {
-    grid[i] = [];
-    for (let j = 0; j < colsQuantity; j++) {
-      grid[i][j] = false;
-    }
-  }
-  return grid;
+  const row = new Array(colsQuantity).fill(false);
+  const column = new Array(rowsQuantity).fill(row);
+
+  return column.map(() => [...row]);
 }
 
 function drawGrid({

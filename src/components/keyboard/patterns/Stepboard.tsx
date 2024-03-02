@@ -8,9 +8,11 @@ export const Stepboard = () => {
     colsQuantity: 16,
   });
 
+  /*
   useEffect(() => {
     console.log('Stepboard grid', grid);
   }, [grid]);
+  */
 
   return (
     <>
