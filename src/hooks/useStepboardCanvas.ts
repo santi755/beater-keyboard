@@ -70,23 +70,28 @@ export function useStepboardCanvas({
 
     context.clearRect(0, 0, canvas.width, canvas.height);
 
-    for (let i = 0; i < rowsQuantity; i++) {
-      for (let j = 0; j < colsQuantity; j++) {
-        if (grid[i][j]) {
+    grid.forEach((row, cellX) => {
+      row.forEach((cell, cellY) => {
+        if (grid[cellX][cellY]) {
           context.fillStyle = '#1abc9c'; // Color de las celdas activas
         } else {
           context.fillStyle = '#ffffff'; // Color de las celdas inactivas
         }
-        context.fillRect(j * cellWidth, i * cellHeight, cellWidth, cellHeight);
-        context.strokeStyle = '#333'; // Color del borde
-        context.strokeRect(
-          j * cellWidth,
-          i * cellHeight,
+        context.fillRect(
+          cellY * cellWidth,
+          cellX * cellHeight,
           cellWidth,
           cellHeight
         );
-      }
-    }
+        context.strokeStyle = '#333'; // Color del borde
+        context.strokeRect(
+          cellY * cellWidth,
+          cellX * cellHeight,
+          cellWidth,
+          cellHeight
+        );
+      });
+    });
   }
 
   return {
