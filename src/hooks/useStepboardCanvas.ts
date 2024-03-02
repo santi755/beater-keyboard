@@ -15,12 +15,12 @@ type DrawGrid = {
   cellHeight: number;
 };
 
-export function useStepboardCanvas() {
+export function useStepboardCanvas({
+  rowsQuantity,
+  colsQuantity,
+}: InitializeGrid) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  const rowsQuantity = 12;
-  const colsQuantity = 16;
-  const grid = initializeGrid({ rowsQuantity, colsQuantity });
+  const grid: boolean[][] = initializeGrid({ rowsQuantity, colsQuantity });
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -30,7 +30,6 @@ export function useStepboardCanvas() {
 
     const cellWidth = canvas.width / colsQuantity;
     const cellHeight = canvas.height / rowsQuantity;
-    const grid: boolean[][] = initializeGrid({ rowsQuantity, colsQuantity });
 
     drawGrid({
       context,
@@ -51,6 +50,7 @@ export function useStepboardCanvas() {
       const j = Math.floor(x / cellWidth);
 
       grid[i][j] = !grid[i][j];
+      console.log('entra al eventListener => ', grid);
 
       drawGrid({
         context,
