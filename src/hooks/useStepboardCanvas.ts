@@ -6,11 +6,8 @@ type InitializeGrid = {
 };
 
 type DrawGrid = {
-  context: CanvasRenderingContext2D;
   canvas: HTMLCanvasElement;
   grid: boolean[][];
-  rowsQuantity: number;
-  colsQuantity: number;
   cellWidth: number;
   cellHeight: number;
 };
@@ -20,53 +17,77 @@ export function useStepboardCanvas({
   colsQuantity,
 }: InitializeGrid) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [grid, setGrid] = useState<boolean[][]>(
-    initializeGrid({ rowsQuantity, colsQuantity })
-  );
+  const [grid, setGrid] = useState<boolean[][]>(initializeGrid());
+
+  function initializeGrid() {
+    const row = new Array(colsQuantity).fill(false);
+    const column = new Array(rowsQuantity).fill(row);
+
+    return column.map(() => [...row]);
+  }
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    const context = canvas?.getContext('2d');
 
-    if (!canvas || !context) return;
+    if (!canvas) return;
 
     const cellWidth = canvas.width / colsQuantity;
     const cellHeight = canvas.height / rowsQuantity;
 
     drawGrid({
-      context,
       canvas,
       grid,
-      rowsQuantity,
-      colsQuantity,
       cellWidth,
       cellHeight,
     });
 
     // Create cell interaction on click
     canvas.addEventListener('click', (event) => {
-      const rect = canvas.getBoundingClientRect();
-      const x = event.clientX - rect.left;
-      const y = event.clientY - rect.top;
-      const i = Math.floor(y / cellHeight);
-      const j = Math.floor(x / cellWidth);
+      const { cellX, cellY } = getCellPosition(
+        event,
+        canvas,
+        cellWidth,
+        cellHeight
+      );
 
       const newGrid = [...grid];
-      newGrid[i][j] = !newGrid[i][j];
+      newGrid[cellX][cellY] = !newGrid[cellX][cellY];
       setGrid(newGrid);
-      console.log('entra al eventListener => ', { grid, i, j });
 
       drawGrid({
-        context,
         canvas,
         grid: newGrid,
-        rowsQuantity,
-        colsQuantity,
         cellWidth,
         cellHeight,
       });
     });
   }, []);
+
+  function drawGrid({ canvas, grid, cellWidth, cellHeight }: DrawGrid) {
+    const context = canvas.getContext('2d');
+
+    if (!context) return;
+
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (let i = 0; i < rowsQuantity; i++) {
+      for (let j = 0; j < colsQuantity; j++) {
+        if (grid[i][j]) {
+          context.fillStyle = '#1abc9c'; // Color de las celdas activas
+        } else {
+          context.fillStyle = '#ffffff'; // Color de las celdas inactivas
+        }
+        context.fillRect(j * cellWidth, i * cellHeight, cellWidth, cellHeight);
+        context.strokeStyle = '#333'; // Color del borde
+        context.strokeRect(
+          j * cellWidth,
+          i * cellHeight,
+          cellWidth,
+          cellHeight
+        );
+      }
+    }
+  }
 
   return {
     canvasRef,
@@ -74,33 +95,17 @@ export function useStepboardCanvas({
   };
 }
 
-function initializeGrid({ rowsQuantity, colsQuantity }: InitializeGrid) {
-  const row = new Array(colsQuantity).fill(false);
-  const column = new Array(rowsQuantity).fill(row);
+function getCellPosition(
+  event: MouseEvent,
+  canvas: HTMLCanvasElement,
+  cellWidth: number,
+  cellHeight: number
+) {
+  const rect = canvas.getBoundingClientRect();
+  const x = event.clientX - rect.left;
+  const y = event.clientY - rect.top;
+  const cellX = Math.floor(y / cellHeight);
+  const cellY = Math.floor(x / cellWidth);
 
-  return column.map(() => [...row]);
-}
-
-function drawGrid({
-  context,
-  canvas,
-  grid,
-  rowsQuantity,
-  colsQuantity,
-  cellWidth,
-  cellHeight,
-}: DrawGrid) {
-  context.clearRect(0, 0, canvas.width, canvas.height);
-  for (let i = 0; i < rowsQuantity; i++) {
-    for (let j = 0; j < colsQuantity; j++) {
-      if (grid[i][j]) {
-        context.fillStyle = '#1abc9c'; // Color de las celdas activas
-      } else {
-        context.fillStyle = '#ffffff'; // Color de las celdas inactivas
-      }
-      context.fillRect(j * cellWidth, i * cellHeight, cellWidth, cellHeight);
-      context.strokeStyle = '#333'; // Color del borde
-      context.strokeRect(j * cellWidth, i * cellHeight, cellWidth, cellHeight);
-    }
-  }
+  return { cellX, cellY };
 }
