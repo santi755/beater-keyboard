@@ -8,18 +8,9 @@ export const Stepboard = () => {
     colsQuantity: 16,
   });
 
-  /*
-  useEffect(() => {
-    console.log('Stepboard grid', grid);
-  }, [grid]);
-  */
-
   return (
     <>
       <canvas ref={canvasRef} width={800} height={384}></canvas>
-
-      <p>grid: {JSON.stringify(grid)}</p>
-      <p>keyboardNotesQuantity: {keyboardNotesQuantity}</p>
     </>
   );
 };

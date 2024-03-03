@@ -17,14 +17,9 @@ export function useStepboardCanvas({
   colsQuantity,
 }: InitializeGrid) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [grid, setGrid] = useState<boolean[][]>(initializeGrid());
-
-  function initializeGrid() {
-    const row = new Array(colsQuantity).fill(false);
-    const column = new Array(rowsQuantity).fill(row);
-
-    return column.map(() => [...row]);
-  }
+  const [grid, setGrid] = useState<boolean[][]>(
+    initializeGrid(colsQuantity, rowsQuantity)
+  );
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -63,41 +58,51 @@ export function useStepboardCanvas({
     });
   }, []);
 
-  function drawGrid({ canvas, grid, cellWidth, cellHeight }: DrawGrid) {
-    const context = canvas.getContext('2d');
-
-    if (!context) return;
-
-    context.clearRect(0, 0, canvas.width, canvas.height);
-
-    grid.forEach((row, cellX) => {
-      row.forEach((cell, cellY) => {
-        if (grid[cellX][cellY]) {
-          context.fillStyle = '#1abc9c'; // Color de las celdas activas
-        } else {
-          context.fillStyle = '#ffffff'; // Color de las celdas inactivas
-        }
-        context.fillRect(
-          cellY * cellWidth,
-          cellX * cellHeight,
-          cellWidth,
-          cellHeight
-        );
-        context.strokeStyle = '#333'; // Color del borde
-        context.strokeRect(
-          cellY * cellWidth,
-          cellX * cellHeight,
-          cellWidth,
-          cellHeight
-        );
-      });
-    });
-  }
-
   return {
     canvasRef,
     grid,
   };
+}
+
+function initializeGrid(colsQuantity: number, rowsQuantity: number) {
+  const row = new Array(colsQuantity).fill(false);
+  const column = new Array(rowsQuantity).fill(row);
+
+  return column.map(() => [...row]);
+}
+
+function drawGrid({ canvas, grid, cellWidth, cellHeight }: DrawGrid) {
+  const context = canvas.getContext('2d');
+  const ACTIVE_CELL_COLOR = '#1abc9c';
+  const INACTIVE_CELL_COLOR = '#ffffff';
+  const BORDER_COLOR = '#333';
+
+  if (!context) return;
+
+  context.clearRect(0, 0, canvas.width, canvas.height);
+
+  grid.forEach((row, cellX) => {
+    row.forEach((cell, cellY) => {
+      if (grid[cellX][cellY]) {
+        context.fillStyle = ACTIVE_CELL_COLOR;
+      } else {
+        context.fillStyle = INACTIVE_CELL_COLOR;
+      }
+      context.fillRect(
+        cellY * cellWidth,
+        cellX * cellHeight,
+        cellWidth,
+        cellHeight
+      );
+      context.strokeStyle = BORDER_COLOR;
+      context.strokeRect(
+        cellY * cellWidth,
+        cellX * cellHeight,
+        cellWidth,
+        cellHeight
+      );
+    });
+  });
 }
 
 function getCellPosition(
