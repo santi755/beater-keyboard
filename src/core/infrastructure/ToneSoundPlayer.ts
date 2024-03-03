@@ -1,11 +1,9 @@
-import * as Tone from 'tone';
+import { PolySynth, Synth } from 'tone';
 import SoundPlayer from '@/core/domain/SoundPlayer';
 
 export default class ToneSoundPlayer implements SoundPlayer {
   constructor(
-    private synth: Tone.PolySynth = new Tone.PolySynth(
-      Tone.Synth
-    ).toDestination()
+    private synth: PolySynth = new PolySynth(Synth).toDestination()
   ) {}
 
   initializeInstrument(config: any): any {
