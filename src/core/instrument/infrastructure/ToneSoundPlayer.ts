@@ -1,5 +1,5 @@
 import { PolySynth, Synth } from 'tone';
-import SoundPlayer from '@/core/domain/SoundPlayer';
+import SoundPlayer from '@/core/instrument/domain/SoundPlayer';
 
 export default class ToneSoundPlayer implements SoundPlayer {
   constructor(

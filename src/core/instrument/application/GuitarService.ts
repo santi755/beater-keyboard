@@ -1,5 +1,5 @@
-import SoundPlayer from '@/core/domain/SoundPlayer';
-import InstrumentService from '@/core/domain/InstrumentService';
+import SoundPlayer from '@/core/instrument/domain/SoundPlayer';
+import InstrumentService from '@/core/instrument/domain/InstrumentService';
 
 const config = {
   oscillator: {

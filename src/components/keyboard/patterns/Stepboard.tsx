@@ -1,6 +1,4 @@
-import { keyboardNotesQuantity } from '@/config/noteList';
 import { useStepboardCanvas } from '@/hooks/useStepboardCanvas';
-import { useEffect } from 'react';
 
 export const Stepboard = () => {
   const { canvasRef, grid } = useStepboardCanvas({
