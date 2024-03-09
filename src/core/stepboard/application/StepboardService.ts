@@ -1,56 +1,29 @@
-export default class StepboardService {
-  constructor() {}
+import GridBuilder from '@/core/stepboard/domain/GridBuilder';
+import Grid from '@/core/stepboard/domain/Grid';
 
-  initializeGrid(colsQuantity: number, rowsQuantity: number): any {
+const CELL_WIDTH = 50;
+const CELL_HEIGHT = 50;
+
+export default class StepboardService {
+  constructor(
+    private gridBuilder: GridBuilder,
+    private canvas: HTMLCanvasElement
+  ) {}
+
+  initialize(colsQuantity: number, rowsQuantity: number): any {
+    const grid: Grid = {
+      matrix: this.createGridMatrix(colsQuantity, rowsQuantity),
+      cellWidth: CELL_WIDTH,
+      cellHeight: CELL_HEIGHT,
+    };
+
+    return grid;
+  }
+
+  createGridMatrix(colsQuantity: number, rowsQuantity: number): boolean[][] {
     const row = new Array(colsQuantity).fill(false);
     const column = new Array(rowsQuantity).fill(row);
 
     return column.map(() => [...row]);
-  }
-  drawGrid(
-    canvas: HTMLCanvasElement,
-    grid: boolean[][],
-    cellWidth: number,
-    cellHeight: number
-  ): any {
-    const context = canvas.getContext('2d');
-    const ACTIVE_CELL_COLOR = '#1abc9c';
-    const INACTIVE_CELL_COLOR = '#ffffff';
-    const BORDER_COLOR = '#333';
-
-    if (!context) return;
-
-    context.clearRect(0, 0, canvas.width, canvas.height);
-
-    grid.forEach((row, cellX) => {
-      row.forEach((cell, cellY) => {
-        if (grid[cellX][cellY]) {
-          context.fillStyle = ACTIVE_CELL_COLOR;
-        } else {
-          context.fillStyle = INACTIVE_CELL_COLOR;
-        }
-        context.fillRect(
-          cellY * cellWidth,
-          cellX * cellHeight,
-          cellWidth,
-          cellHeight
-        );
-        context.strokeStyle = BORDER_COLOR;
-        context.strokeRect(
-          cellY * cellWidth,
-          cellX * cellHeight,
-          cellWidth,
-          cellHeight
-        );
-      });
-    });
-  }
-  getCellPosition(
-    event: MouseEvent,
-    canvas: HTMLCanvasElement,
-    cellWidth: number,
-    cellHeight: number
-  ): any {
-    throw new Error('Method not implemented.');
   }
 }
