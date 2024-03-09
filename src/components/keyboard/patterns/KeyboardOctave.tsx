@@ -1,4 +1,4 @@
-import InstrumentService from '@/core/instrument/domain/InstrumentService';
+import InstrumentService from '@/core/contexts/instrument/domain/InstrumentService';
 
 import { useInstrument } from '@/app/sequencer/page';
 import { keyboardNotes, Note } from '@/config/noteList';

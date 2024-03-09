@@ -2,8 +2,8 @@
 
 import { useEffect, useState, createContext, useContext } from 'react';
 
-import GuitarService from '@/core/instrument/application/GuitarService';
-import ToneSoundPlayer from '@/core/instrument/infrastructure/ToneSoundPlayer';
+import GuitarService from '@/core/contexts/instrument/application/GuitarService';
+import ToneSoundPlayer from '@/core/contexts/instrument/infrastructure/ToneSoundPlayer';
 
 import { Keyboard } from '@/components/keyboard/patterns/Keyboard';
 import { Stepboard } from '@/components/keyboard/patterns/Stepboard';

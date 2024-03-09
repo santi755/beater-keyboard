@@ -1,5 +1,5 @@
-import GridBuilder from '@/core/stepboard/domain/GridBuilder';
-import Grid from '@/core/stepboard/domain/Grid';
+import GridBuilder from '@/core/contexts/stepboard/domain/GridBuilder';
+import Grid from '@/core/contexts/stepboard/domain/Grid';
 
 const CELL_WIDTH = 50;
 const CELL_HEIGHT = 50;

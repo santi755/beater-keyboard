@@ -1,5 +1,5 @@
-import GridBuilder from '@/core/stepboard/domain/GridBuilder';
-import Grid from '@/core/stepboard/domain/Grid';
+import GridBuilder from '@/core/contexts/stepboard/domain/GridBuilder';
+import Grid from '@/core/contexts/stepboard/domain/Grid';
 
 export default class CanvasGridBuilder implements GridBuilder {
   drawGrid(canvas: HTMLCanvasElement, grid: Grid): void {
