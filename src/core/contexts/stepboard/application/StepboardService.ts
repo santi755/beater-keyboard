@@ -8,11 +8,7 @@ export default class StepboardService {
   constructor(
     private gridBuilder: GridBuilder,
     private canvas: HTMLCanvasElement,
-    private grid: Grid = {
-      matrix: [],
-      cellWidth: CELL_WIDTH,
-      cellHeight: CELL_HEIGHT,
-    }
+    private grid: Grid = new Grid([], CELL_WIDTH, CELL_HEIGHT)
   ) {}
 
   public initializeCanvas(canvas: HTMLCanvasElement): void {
@@ -20,19 +16,9 @@ export default class StepboardService {
   }
 
   public initializeGrid(colsQuantity: number, rowsQuantity: number): any {
-    this.grid.matrix = this.createGridMatrix(colsQuantity, rowsQuantity);
+    this.grid.initializeMatrix(colsQuantity, rowsQuantity);
 
     return this.grid;
-  }
-
-  private createGridMatrix(
-    colsQuantity: number,
-    rowsQuantity: number
-  ): boolean[][] {
-    const row = new Array(colsQuantity).fill(false);
-    const column = new Array(rowsQuantity).fill(row);
-
-    return column.map(() => [...row]);
   }
 
   public drawGrid(): void {
