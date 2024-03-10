@@ -3,6 +3,7 @@ import Grid from '@/core/contexts/stepboard/domain/Grid';
 
 export default class CanvasGridBuilder implements GridBuilder {
   drawGrid(canvas: HTMLCanvasElement, grid: Grid): void {
+    console.log('cositas => ', canvas, grid);
     const context = canvas.getContext('2d');
     const ACTIVE_CELL_COLOR = '#1abc9c';
     const INACTIVE_CELL_COLOR = '#ffffff';

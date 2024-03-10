@@ -1,5 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 
+import Grid from '@/core/contexts/stepboard/domain/Grid';
+
+import StepboardService from '@/core/contexts/stepboard/application/StepboardService';
+import CanvasGridBuilder from '@/core/contexts/stepboard/infrastructure/CanvasGridBuilder';
+
 type InitializeGrid = {
   rowsQuantity: number;
   colsQuantity: number;
@@ -17,8 +22,13 @@ export function useStepboardCanvas({
   colsQuantity,
 }: InitializeGrid) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [grid, setGrid] = useState<boolean[][]>(
-    initializeGrid(colsQuantity, rowsQuantity)
+  const stepboardService = new StepboardService(
+    new CanvasGridBuilder(),
+    canvasRef.current as HTMLCanvasElement
+  );
+
+  const [grid, setGrid] = useState<Grid>(
+    stepboardService.initializeGrid(colsQuantity, rowsQuantity)
   );
 
   useEffect(() => {
@@ -26,18 +36,14 @@ export function useStepboardCanvas({
 
     if (!canvas) return;
 
-    const cellWidth = canvas.width / colsQuantity;
-    const cellHeight = canvas.height / rowsQuantity;
+    stepboardService.initializeCanvas(canvas);
 
-    drawGrid({
-      canvas,
-      grid,
-      cellWidth,
-      cellHeight,
-    });
+    stepboardService.drawGrid();
 
     // Create cell interaction on click
     canvas.addEventListener('click', (event) => {
+      const cellWidth = canvas.width / colsQuantity;
+      const cellHeight = canvas.height / rowsQuantity;
       const { cellX, cellY } = getCellPosition(
         event,
         canvas,
@@ -45,9 +51,12 @@ export function useStepboardCanvas({
         cellHeight
       );
 
-      const newGrid = [...grid];
+      const newGrid: boolean[][] = [...grid.matrix];
       newGrid[cellX][cellY] = !newGrid[cellX][cellY];
-      setGrid(newGrid);
+      setGrid({
+        ...grid,
+        matrix: newGrid,
+      });
 
       drawGrid({
         canvas,
@@ -62,13 +71,6 @@ export function useStepboardCanvas({
     canvasRef,
     grid,
   };
-}
-
-function initializeGrid(colsQuantity: number, rowsQuantity: number) {
-  const row = new Array(colsQuantity).fill(false);
-  const column = new Array(rowsQuantity).fill(row);
-
-  return column.map(() => [...row]);
 }
 
 function drawGrid({ canvas, grid, cellWidth, cellHeight }: DrawGrid) {
