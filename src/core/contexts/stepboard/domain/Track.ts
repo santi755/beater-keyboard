@@ -1,16 +1,22 @@
 export default class Track {
   constructor(
-    private readonly numSteps: number,
-    private readonly numNotes: number,
-    private notes: boolean[][]
-  ) {
-    this.notes = this.initializeNotes();
+    public numSteps: number,
+    public numNotes: number,
+    public notes: boolean[][]
+  ) {}
+
+  static create(numSteps: number, numNotes: number): Track {
+    const steps = new Array(numSteps).fill(false);
+    const notes = new Array(numNotes).fill(steps);
+
+    return new Track(numSteps, numNotes, notes);
   }
 
-  private initializeNotes(): boolean[][] {
-    const steps = new Array(this.numSteps).fill(false);
-    const notes = new Array(this.numNotes).fill(steps);
+  activateNote = (noteIndex: number, stepIndex: number): void => {
+    this.notes[noteIndex][stepIndex] = true;
+  };
 
-    return notes.map(() => [...steps]);
-  }
+  deactivateNote = (noteIndex: number, stepIndex: number): void => {
+    this.notes[noteIndex][stepIndex] = false;
+  };
 }

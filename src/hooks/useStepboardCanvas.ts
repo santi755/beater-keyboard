@@ -37,9 +37,9 @@ export function useStepboardCanvas({
     if (!canvas) return;
 
     stepboardService.initializeCanvas(canvas);
+    stepboardService.drawGrid(grid);
 
-    stepboardService.drawGrid();
-
+    /******
     // Create cell interaction on click
     canvas.addEventListener('click', (event) => {
       const cellWidth = canvas.width / colsQuantity;
@@ -65,6 +65,8 @@ export function useStepboardCanvas({
         cellHeight,
       });
     });
+
+    *********/
   }, []);
 
   return {
@@ -73,6 +75,7 @@ export function useStepboardCanvas({
   };
 }
 
+/*
 function drawGrid({ canvas, grid, cellWidth, cellHeight }: DrawGrid) {
   const context = canvas.getContext('2d');
   const ACTIVE_CELL_COLOR = '#1abc9c';
@@ -121,3 +124,4 @@ function getCellPosition(
 
   return { cellX, cellY };
 }
+*/

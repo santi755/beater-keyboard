@@ -9,8 +9,15 @@ export default class CanvasGridBuilder implements GridBuilder {
     const INACTIVE_CELL_COLOR = '#ffffff';
     const BORDER_COLOR = '#333';
 
+    console.log('grid => ', grid);
     if (!context) {
+      // TODO: Use a custom error
       throw new Error('Canvas context not found');
+    }
+
+    if (!grid) {
+      // TODO: Use a custom error
+      throw new Error('Grid not found');
     }
 
     context.clearRect(0, 0, canvas.width, canvas.height);

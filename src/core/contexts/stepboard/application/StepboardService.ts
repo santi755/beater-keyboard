@@ -7,8 +7,7 @@ const CELL_HEIGHT = 50;
 export default class StepboardService {
   constructor(
     private gridBuilder: GridBuilder,
-    private canvas: HTMLCanvasElement,
-    private grid: Grid = new Grid([], CELL_WIDTH, CELL_HEIGHT)
+    private canvas: HTMLCanvasElement
   ) {}
 
   public initializeCanvas(canvas: HTMLCanvasElement): void {
@@ -16,16 +15,15 @@ export default class StepboardService {
   }
 
   public initializeGrid(colsQuantity: number, rowsQuantity: number): any {
-    this.grid.initializeMatrix(colsQuantity, rowsQuantity);
-
-    return this.grid;
+    return Grid.create(colsQuantity, rowsQuantity, CELL_WIDTH, CELL_HEIGHT);
   }
 
-  public drawGrid(): void {
+  public drawGrid(grid: Grid): void {
     if (!this.canvas) {
+      // TODO: Use a custom error
       throw new Error('Canvas not found');
     }
 
-    this.gridBuilder.drawGrid(this.canvas, this.grid);
+    this.gridBuilder.drawGrid(this.canvas, grid);
   }
 }
