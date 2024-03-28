@@ -2,13 +2,13 @@ import Track from '@/core/contexts/stepboard/domain/Track';
 
 export default class Stepboard {
   constructor(
-    public tracks: Track[],
-    public tempo: number,
-    public playing: boolean,
-    public currentStep: number,
-    public loop: boolean,
-    public masterVolume: number,
-    public selectedInstrument: any
+    readonly tracks: Track[],
+    readonly tempo: number,
+    readonly playing: boolean,
+    readonly currentStep: number,
+    readonly loop: boolean,
+    readonly masterVolume: number,
+    readonly selectedInstrument: any
   ) {}
 
   static create(
@@ -31,15 +31,39 @@ export default class Stepboard {
     );
   }
 
-  public addTrack(track: Track): void {
-    this.tracks.push(track);
+  public addTrack(track: Track): Stepboard {
+    return new Stepboard(
+      [...this.tracks, track],
+      this.tempo,
+      this.playing,
+      this.currentStep,
+      this.loop,
+      this.masterVolume,
+      this.selectedInstrument
+    );
   }
 
-  public play(): void {
-    this.playing = true;
+  public play(): Stepboard {
+    return new Stepboard(
+      this.tracks,
+      this.tempo,
+      true,
+      this.currentStep,
+      this.loop,
+      this.masterVolume,
+      this.selectedInstrument
+    );
   }
 
-  public stop(): void {
-    this.playing = false;
+  public stop(): Stepboard {
+    return new Stepboard(
+      this.tracks,
+      this.tempo,
+      false,
+      this.currentStep,
+      this.loop,
+      this.masterVolume,
+      this.selectedInstrument
+    );
   }
 }

@@ -1,34 +1,24 @@
 import { useEffect, useRef, useState } from 'react';
 
-import Grid from '@/core/contexts/stepboard/domain/Grid';
+import StepboardGrid from '@/core/contexts/stepboard/domain/StepboardGrid';
 
 import StepboardService from '@/core/contexts/stepboard/application/StepboardService';
 import CanvasGridBuilder from '@/core/contexts/stepboard/infrastructure/CanvasGridBuilder';
 
 type InitializeGrid = {
-  rowsQuantity: number;
-  colsQuantity: number;
+  steps: number;
+  notes: Array<string>;
 };
 
-type DrawGrid = {
-  canvas: HTMLCanvasElement;
-  grid: boolean[][];
-  cellWidth: number;
-  cellHeight: number;
-};
-
-export function useStepboardCanvas({
-  rowsQuantity,
-  colsQuantity,
-}: InitializeGrid) {
+export function useStepboardCanvas({ steps, notes }: InitializeGrid) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const stepboardService = new StepboardService(
     new CanvasGridBuilder(),
     canvasRef.current as HTMLCanvasElement
   );
 
-  const [grid, setGrid] = useState<Grid>(
-    stepboardService.initializeGrid(colsQuantity, rowsQuantity)
+  const [grid, setGrid] = useState<StepboardGrid>(
+    stepboardService.initializeGrid(steps, notes)
   );
 
   useEffect(() => {

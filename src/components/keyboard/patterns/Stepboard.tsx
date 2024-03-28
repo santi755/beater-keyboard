@@ -1,9 +1,11 @@
 import { useStepboardCanvas } from '@/hooks/useStepboardCanvas';
+import { keyboardNotes } from '@/config/noteList';
 
 export const Stepboard = () => {
+  const notes = keyboardNotes.map((note) => note.value);
   const { canvasRef, grid } = useStepboardCanvas({
-    rowsQuantity: 12,
-    colsQuantity: 16,
+    steps: 12,
+    notes,
   });
 
   return (

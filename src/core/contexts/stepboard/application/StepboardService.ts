@@ -1,8 +1,8 @@
 import GridBuilder from '@/core/contexts/stepboard/domain/GridBuilder';
-import Grid from '@/core/contexts/stepboard/domain/Grid';
+import StepboardGrid from '@/core/contexts/stepboard/domain/StepboardGrid';
 
-const CELL_WIDTH = 50;
-const CELL_HEIGHT = 50;
+const CELL_WIDTH = 32;
+const CELL_HEIGHT = 32;
 
 export default class StepboardService {
   constructor(
@@ -14,16 +14,16 @@ export default class StepboardService {
     this.canvas = canvas;
   }
 
-  public initializeGrid(colsQuantity: number, rowsQuantity: number): any {
-    return Grid.create(colsQuantity, rowsQuantity, CELL_WIDTH, CELL_HEIGHT);
+  public initializeGrid(steps: number, notes: Array<string>): any {
+    return StepboardGrid.create(steps, notes, CELL_WIDTH, CELL_HEIGHT);
   }
 
-  public drawGrid(grid: Grid): void {
+  public drawGrid(stepboardGrid: StepboardGrid): void {
     if (!this.canvas) {
       // TODO: Use a custom error
       throw new Error('Canvas not found');
     }
 
-    this.gridBuilder.drawGrid(this.canvas, grid);
+    this.gridBuilder.drawGrid(this.canvas, stepboardGrid);
   }
 }

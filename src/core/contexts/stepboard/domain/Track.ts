@@ -1,22 +1,24 @@
+import Instrument from '../../instrument/domain/Instrument';
+import Note from './Note';
+
 export default class Track {
   constructor(
-    public numSteps: number,
-    public numNotes: number,
-    public notes: boolean[][]
+    readonly notes: Note[],
+    readonly instrument: Instrument
   ) {}
 
-  static create(numSteps: number, numNotes: number): Track {
-    const steps = new Array(numSteps).fill(false);
-    const notes = new Array(numNotes).fill(steps);
-
-    return new Track(numSteps, numNotes, notes);
+  static create(notes: Note[], instrument: Instrument): Track {
+    return new Track(notes, instrument);
   }
 
-  activateNote = (noteIndex: number, stepIndex: number): void => {
-    this.notes[noteIndex][stepIndex] = true;
-  };
+  public addNote(note: Note): Track {
+    return new Track([...this.notes, note], this.instrument);
+  }
 
-  deactivateNote = (noteIndex: number, stepIndex: number): void => {
-    this.notes[noteIndex][stepIndex] = false;
-  };
+  public removeNoteAt(step: number): Track {
+    return new Track(
+      this.notes.filter((note) => note.step !== step),
+      this.instrument
+    );
+  }
 }
