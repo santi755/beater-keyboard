@@ -1,22 +1,22 @@
 import InstrumentService from '@/core/contexts/instrument/domain/InstrumentService';
 
 import { useInstrument } from '@/app/sequencer/page';
-import { keyboardNotes, Note } from '@/config/noteList';
 
 import { KeyButton } from '@/components/keyboard/atoms/KeyButton';
 
 interface KeyButtonProps {
   octave: number;
+  notesAvailable: string[];
 }
 
-export const KeyboardOctave = ({ octave }: KeyButtonProps) => {
+export const KeyboardOctave = ({ octave, notesAvailable }: KeyButtonProps) => {
   const instrument = useInstrument();
 
   return (
     <div className='grid grid-cols-1'>
       {
         instrument
-          ? keyboardNotes.map((note) =>
+          ? notesAvailable.map((note) =>
               BuildKeyButton(note, octave, instrument)
             )
           : null // TODO: Loading
@@ -26,11 +26,12 @@ export const KeyboardOctave = ({ octave }: KeyButtonProps) => {
 };
 
 function BuildKeyButton(
-  note: Note,
+  note: string,
   octave: number,
   instrument: InstrumentService
 ) {
-  const keyNote = `${note.value}${octave}`;
+  const keyNote = `${note}${octave}`;
+  const type = note.includes('#') ? 'black' : 'white';
   return (
     <KeyButton
       key={keyNote}
@@ -38,7 +39,7 @@ function BuildKeyButton(
       onMouseDown={() => instrument.playSound(keyNote)}
       onMouseUp={() => instrument.stopSound(keyNote)}
       onMouseLeave={() => instrument.stopSound(keyNote)}
-      noteType={note.type}
+      noteType={type}
     />
   );
 }

@@ -20,27 +20,28 @@ export default class CanvasGridBuilder implements GridBuilder {
 
     context.clearRect(0, 0, canvas.width, canvas.height);
 
+    console.log(grid.matrix);
     const gridMatrix = Array.from(grid.matrix.values());
     // TODO: refactor to use design pattern and avoid nested loops and if statements
-    gridMatrix.forEach((row, cellX) => {
-      row.forEach((cell, cellY) => {
-        if (cell.duration) {
+    gridMatrix.forEach((steps, stepPositionX) => {
+      steps.forEach((step, stepPositionY) => {
+        if (step.duration) {
           context.fillStyle = ACTIVE_CELL_COLOR;
         } else {
           context.fillStyle = INACTIVE_CELL_COLOR;
         }
 
         context.fillRect(
-          cellY * grid.cellWidth,
-          cellX * grid.cellHeight,
+          stepPositionY * grid.cellWidth,
+          stepPositionX * grid.cellHeight,
           grid.cellWidth,
           grid.cellHeight
         );
 
         context.strokeStyle = BORDER_COLOR;
         context.strokeRect(
-          cellY * grid.cellWidth,
-          cellX * grid.cellHeight,
+          stepPositionY * grid.cellWidth,
+          stepPositionX * grid.cellHeight,
           grid.cellWidth,
           grid.cellHeight
         );

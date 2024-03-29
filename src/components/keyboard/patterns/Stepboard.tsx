@@ -1,8 +1,13 @@
+import NotesService from '@/core/contexts/stepboard/application/NotesService';
+import JsonNoteProvider from '@/core/contexts/stepboard/infrastructure/JsonNoteProvider';
+
 import { useStepboardCanvas } from '@/hooks/useStepboardCanvas';
-import { keyboardNotes } from '@/config/noteList';
 
 export const Stepboard = () => {
-  const notes = keyboardNotes.map((note) => note.value);
+  const noteProvider = new JsonNoteProvider();
+  const notesService = new NotesService(noteProvider);
+
+  const notes = notesService.getNotesAvailable();
   const { canvasRef, grid } = useStepboardCanvas({
     steps: 12,
     notes,
