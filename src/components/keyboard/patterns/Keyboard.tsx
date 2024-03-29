@@ -1,5 +1,5 @@
-import NotesService from '@/core/contexts/stepboard/application/NotesService';
-import JsonNoteProvider from '@/core/contexts/stepboard/infrastructure/JsonNoteProvider';
+import NotesService from '@/core/contexts/board/application/NotesService';
+import JsonNoteProvider from '@/core/contexts/board/infrastructure/JsonNoteProvider';
 
 import { KeyboardOctave } from '@/components/keyboard/patterns/KeyboardOctave';
 

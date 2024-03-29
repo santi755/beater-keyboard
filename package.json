@@ -18,7 +18,8 @@
     "react": "^18",
     "react-dom": "^18",
     "tone": "^14.7.77",
-    "vite-tsconfig-paths": "^4.3.1"
+    "vite-tsconfig-paths": "^4.3.1",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.6.4",

@@ -1,4 +1,4 @@
-import NoteProvider from '@/core/contexts/stepboard/domain/NoteProvider';
+import NoteProvider from '@/core/contexts/board/domain/NoteProvider';
 
 export default class NotesService {
   constructor(private noteProvider: NoteProvider) {}

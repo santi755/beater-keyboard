@@ -1,5 +1,5 @@
-import GridBuilder from '@/core/contexts/stepboard/domain/GridBuilder';
-import StepboardGrid from '@/core/contexts/stepboard/domain/StepboardGrid';
+import GridBuilder from '@/core/contexts/board/domain/GridBuilder';
+import StepboardGrid from '@/core/contexts/board/domain/StepboardGrid';
 
 export default class CanvasGridBuilder implements GridBuilder {
   drawGrid(canvas: HTMLCanvasElement, grid: StepboardGrid): void {
@@ -20,7 +20,6 @@ export default class CanvasGridBuilder implements GridBuilder {
 
     context.clearRect(0, 0, canvas.width, canvas.height);
 
-    console.log(grid.matrix);
     const gridMatrix = Array.from(grid.matrix.values());
     // TODO: refactor to use design pattern and avoid nested loops and if statements
     gridMatrix.forEach((steps, stepPositionX) => {

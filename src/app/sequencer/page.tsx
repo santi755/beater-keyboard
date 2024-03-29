@@ -2,6 +2,9 @@
 
 import { useEffect, useState, createContext, useContext } from 'react';
 
+import useStore from '@/store/useStore';
+import { useBoardStore } from '@/store/board/useBoardStore';
+
 import GuitarService from '@/core/contexts/instrument/application/GuitarService';
 import ToneSoundPlayer from '@/core/contexts/instrument/infrastructure/ToneSoundPlayer';
 
@@ -11,11 +14,14 @@ import { Stepboard } from '@/components/keyboard/patterns/Stepboard';
 const InstrumentContext = createContext<GuitarService | null>(null);
 
 export default function Sequencer() {
+  const initializeStepboard = useStore(
+    useBoardStore,
+    (state) => state.initializeStepboard
+  );
+  console.log(initializeStepboard);
+
   const [instrument, setInstrument] = useState<GuitarService | null>(null);
 
-  if (typeof window !== 'undefined') {
-    console.log('página sequencer pageasd.tsx');
-  }
   useEffect(() => {
     const toneSoundPlayer = new ToneSoundPlayer();
     const guitarService = new GuitarService(toneSoundPlayer);

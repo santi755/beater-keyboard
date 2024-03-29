@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 
-import StepboardGrid from '@/core/contexts/stepboard/domain/StepboardGrid';
+import StepboardGrid from '@/core/contexts/board/domain/StepboardGrid';
 
-import StepboardService from '@/core/contexts/stepboard/application/StepboardService';
-import CanvasGridBuilder from '@/core/contexts/stepboard/infrastructure/CanvasGridBuilder';
+import BoardService from '@/core/contexts/board/application/BoardService';
+import CanvasGridBuilder from '@/core/contexts/board/infrastructure/CanvasGridBuilder';
 
 type InitializeGrid = {
   steps: number;
@@ -12,13 +12,10 @@ type InitializeGrid = {
 
 export function useStepboardCanvas({ steps, notes }: InitializeGrid) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const stepboardService = new StepboardService(
-    new CanvasGridBuilder(),
-    canvasRef.current as HTMLCanvasElement
-  );
+  const boardService = new BoardService(new CanvasGridBuilder());
 
   const [grid, setGrid] = useState<StepboardGrid>(
-    stepboardService.initializeGrid(steps, notes)
+    boardService.initializeGrid(steps, notes)
   );
 
   useEffect(() => {
@@ -26,8 +23,7 @@ export function useStepboardCanvas({ steps, notes }: InitializeGrid) {
 
     if (!canvas) return;
 
-    stepboardService.initializeCanvas(canvas);
-    stepboardService.drawGrid(grid);
+    boardService.drawGrid(canvas, grid);
 
     /******
     // Create cell interaction on click
