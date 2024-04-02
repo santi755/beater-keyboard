@@ -1,4 +1,19 @@
 import { create } from 'zustand';
+
+import Board from '@/core/contexts/board/domain/Board';
+
+interface BoardState {
+  board: Board | null;
+  setBoard: (board: Board) => void;
+}
+
+export const useBoardStore = create<BoardState>()((set) => ({
+  board: null,
+  setBoard: (board) => set({ board }),
+}));
+
+/*
+import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 import BoardService from '@/core/contexts/board/application/BoardService';
@@ -26,3 +41,4 @@ export const useBoardStore = create(
     }
   )
 );
+*/
