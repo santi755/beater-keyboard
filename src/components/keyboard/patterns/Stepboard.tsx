@@ -8,7 +8,7 @@ export const Stepboard = () => {
   const notesService = new NotesService(noteProvider);
 
   const notes = notesService.getNotesAvailable();
-  const { canvasRef, grid } = useStepboardCanvas({
+  const { canvasRef } = useStepboardCanvas({
     steps: 12,
     notes,
   });

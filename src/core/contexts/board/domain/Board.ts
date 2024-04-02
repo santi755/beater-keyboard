@@ -1,33 +1,47 @@
 import Track from '@/core/contexts/board/domain/Track';
+import BoardDimension from '@/core/contexts/board/domain/BoardDimension';
 
 export default class Board {
   constructor(
-    readonly tracks: Track[]
-    /*readonly tempo: number,
-    readonly playing: boolean,
-    readonly currentStep: number,
+    private tracks: Track[],
+    private playing: boolean,
+    private currentStep: number,
+    private dimension: BoardDimension
+    /*
+    readonly tempo: number,
     readonly loop: boolean,
-    readonly masterVolume: number,
-    readonly selectedInstrument: any*/
+    readonly masterVolume: number
+    */
   ) {}
 
   static create(
-    tracks: Track[]
-    /*tempo: number,
+    tracks: Track[],
     playing: boolean,
     currentStep: number,
+    dimensions: BoardDimension
+    /*
+    tempo: number,
     loop: boolean,
     masterVolume: number,
-    selectedInstrument: any*/
+    selectedInstrument: any
+    */
   ): Board {
     return new Board(
-      tracks
-      /*tempo,
+      tracks,
       playing,
       currentStep,
+      dimensions
+      /*
+      tempo,
       loop,
       masterVolume,
-      selectedInstrument*/
+      selectedInstrument
+      */
     );
+  }
+
+  public replay(): void {
+    this.playing = true;
+    this.currentStep = 0;
   }
 }

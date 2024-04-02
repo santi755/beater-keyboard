@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-import StepboardGrid from '@/core/contexts/board/domain/StepboardGrid';
+import { useBoardStore } from '@/store';
 
 import BoardService from '@/core/contexts/board/application/BoardService';
 import CanvasGridBuilder from '@/core/contexts/board/infrastructure/CanvasGridBuilder';
@@ -12,18 +12,21 @@ type InitializeGrid = {
 
 export function useStepboardCanvas({ steps, notes }: InitializeGrid) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const boardService = new BoardService(new CanvasGridBuilder());
-
-  const [grid, setGrid] = useState<StepboardGrid>(
-    boardService.initializeGrid(steps, notes)
-  );
+  const board = useBoardStore((state) => state.board);
 
   useEffect(() => {
     const canvas = canvasRef.current;
 
-    if (!canvas) return;
+    if (!canvas) {
+      // TODO: Use a custom error
+      throw new Error('Canvas not found');
+    }
 
-    boardService.drawGrid(canvas, grid);
+    if (!board) return;
+
+    const boardService = new BoardService(new CanvasGridBuilder(canvas));
+
+    boardService.buildGrid(board);
 
     /******
     // Create cell interaction on click
@@ -53,11 +56,10 @@ export function useStepboardCanvas({ steps, notes }: InitializeGrid) {
     });
 
     *********/
-  }, []);
+  }, [board]);
 
   return {
     canvasRef,
-    grid,
   };
 }
 

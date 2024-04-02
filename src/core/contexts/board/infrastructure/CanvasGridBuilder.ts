@@ -1,9 +1,15 @@
 import GridBuilder from '@/core/contexts/board/domain/GridBuilder';
-import StepboardGrid from '@/core/contexts/board/domain/StepboardGrid';
+import Board from '@/core/contexts/board/domain/Board';
 
 export default class CanvasGridBuilder implements GridBuilder {
-  drawGrid(canvas: HTMLCanvasElement, grid: StepboardGrid): void {
-    const context = canvas.getContext('2d');
+  public constructor(
+    private readonly canvas: HTMLCanvasElement = document.createElement(
+      'canvas'
+    )
+  ) {}
+
+  build(board: Board): void {
+    const context = this.canvas.getContext('2d');
     const ACTIVE_CELL_COLOR = '#1abc9c';
     const INACTIVE_CELL_COLOR = '#ffffff';
     const BORDER_COLOR = '#333';
@@ -13,14 +19,17 @@ export default class CanvasGridBuilder implements GridBuilder {
       throw new Error('Canvas context not found');
     }
 
+    console.log('board => ', board);
+    /*
     if (!grid) {
       // TODO: Use a custom error
       throw new Error('Grid not found');
     }
 
-    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     const gridMatrix = Array.from(grid.matrix.values());
+
     // TODO: refactor to use design pattern and avoid nested loops and if statements
     gridMatrix.forEach((steps, stepPositionX) => {
       steps.forEach((step, stepPositionY) => {
@@ -46,5 +55,6 @@ export default class CanvasGridBuilder implements GridBuilder {
         );
       });
     });
+    */
   }
 }

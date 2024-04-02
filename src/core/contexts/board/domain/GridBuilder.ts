@@ -1,5 +1,5 @@
-import StepboardGrid from './StepboardGrid';
+import Board from './Board';
 
 export default interface GridBuilder {
-  drawGrid(canvas: HTMLCanvasElement, stepboardGrid: StepboardGrid): void;
+  build(board: Board): void;
 }
