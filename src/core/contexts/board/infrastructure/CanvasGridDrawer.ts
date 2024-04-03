@@ -1,17 +1,17 @@
-import GridBuilder from '@/core/contexts/board/domain/GridBuilder';
+import GridDrawer from '@/core/contexts/board/domain/GridDrawer';
 import Board from '@/core/contexts/board/domain/Board';
 
 const CELL_WIDTH = 40;
 const CELL_HEIGHT = 32;
 
-export default class CanvasGridBuilder implements GridBuilder {
+export default class CanvasGridDrawer implements GridDrawer {
   public constructor(
     private readonly canvas: HTMLCanvasElement = document.createElement(
       'canvas'
     )
   ) {}
 
-  build(board: Board): void {
+  draw(board: Board): void {
     const context = this.canvas.getContext('2d');
     const BORDER_COLOR = '#333';
 
