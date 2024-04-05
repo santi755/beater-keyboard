@@ -1,13 +1,10 @@
-import NotesService from '@/core/contexts/board/application/NotesService';
-import JsonNoteProvider from '@/core/contexts/board/infrastructure/JsonNoteProvider';
-
 import { useStepboardCanvas } from '@/hooks/useStepboardCanvas';
+import { useBoardStore } from '@/store';
 
 export const Stepboard = () => {
-  const noteProvider = new JsonNoteProvider();
-  const notesService = new NotesService(noteProvider);
+  const board = useBoardStore((state) => state.board);
 
-  const notes = notesService.getNotesAvailable();
+  const notes = board?.getNotesAvailable() || [];
   const { canvasRef } = useStepboardCanvas({
     steps: 12,
     notes,

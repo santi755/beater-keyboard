@@ -7,11 +7,6 @@ export default class Board {
     private playing: boolean,
     private currentStep: number,
     private dimension: BoardDimension
-    /*
-    readonly tempo: number,
-    readonly loop: boolean,
-    readonly masterVolume: number
-    */
   ) {}
 
   static create(
@@ -19,29 +14,35 @@ export default class Board {
     playing: boolean,
     currentStep: number,
     dimensions: BoardDimension
-    /*
-    tempo: number,
-    loop: boolean,
-    masterVolume: number,
-    selectedInstrument: any
-    */
   ): Board {
-    return new Board(
-      tracks,
-      playing,
-      currentStep,
-      dimensions
-      /*
-      tempo,
-      loop,
-      masterVolume,
-      selectedInstrument
-      */
-    );
+    return new Board(tracks, playing, currentStep, dimensions);
   }
 
   public replay(): void {
     this.playing = true;
     this.currentStep = 0;
+  }
+
+  // TODO: Check if this is the right way to do it
+  public getOctaves(): number[] {
+    return [5];
+  }
+
+  // TODO: Check if this is the right way to do it
+  public getNotesAvailable(): string[] {
+    return [
+      'C',
+      'C#',
+      'D',
+      'D#',
+      'E',
+      'F',
+      'F#',
+      'G',
+      'G#',
+      'A',
+      'A#',
+      'B',
+    ].reverse();
   }
 }

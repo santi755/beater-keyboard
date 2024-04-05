@@ -1,14 +1,12 @@
-import NotesService from '@/core/contexts/board/application/NotesService';
-import JsonNoteProvider from '@/core/contexts/board/infrastructure/JsonNoteProvider';
+import { useBoardStore } from '@/store';
 
 import { KeyboardOctave } from '@/components/keyboard/patterns/KeyboardOctave';
 
 export const Keyboard = () => {
-  const noteProvider = new JsonNoteProvider();
-  const notesService = new NotesService(noteProvider);
+  const board = useBoardStore((state) => state.board);
 
-  const keyboardOctaves = noteProvider.getOctaves();
-  const notesAvailable = notesService.getNotesAvailable();
+  const keyboardOctaves = board?.getOctaves() || [];
+  const notesAvailable = board?.getNotesAvailable() || [];
 
   return keyboardOctaves.map((octave) => (
     <KeyboardOctave
