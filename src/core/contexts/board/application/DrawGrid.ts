@@ -5,7 +5,6 @@ export default class DrawGrid {
   constructor(private gridDrawer: GridDrawer) {}
 
   public execute(board: Board): void {
-    console.log('Drawing grid');
     if (!board) {
       // TODO: Use a custom error
       throw new Error('Canvas not found');
