@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import { useBoardStore } from '@/store';
 
-import BoardService from '@/core/contexts/board/application/BoardService';
+import DrawGrid from '@/core/contexts/board/application/DrawGrid';
 import CanvasGridDrawer from '@/core/contexts/board/infrastructure/CanvasGridDrawer';
 
 type InitializeGrid = {
@@ -24,9 +24,9 @@ export function useStepboardCanvas({ steps, notes }: InitializeGrid) {
 
     if (!board) return;
 
-    const boardService = new BoardService(new CanvasGridDrawer(canvas));
+    const drawGrid = new DrawGrid(new CanvasGridDrawer(canvas));
 
-    boardService.drawGrid(board);
+    drawGrid.execute(board);
 
     /******
     // Create cell interaction on click

@@ -7,8 +7,7 @@ import { useBoardStore } from '@/store';
 import GuitarService from '@/core/contexts/instrument/application/GuitarService';
 import ToneSoundPlayer from '@/core/contexts/instrument/infrastructure/ToneSoundPlayer';
 
-import BoardService from '@/core/contexts/board/application/BoardService';
-import CanvasGridDrawer from '@/core/contexts/board/infrastructure/CanvasGridDrawer';
+import InitializeBoard from '@/core/contexts/board/application/InitializeBoard';
 
 import { Keyboard } from '@/components/keyboard/patterns/Keyboard';
 import { Stepboard } from '@/components/keyboard/patterns/Stepboard';
@@ -26,9 +25,8 @@ export default function Sequencer() {
 
     setInstrument(guitarService);
 
-    const canvasGridDrawer = new CanvasGridDrawer();
-    const boardService = new BoardService(canvasGridDrawer);
-    const boardInitialized = boardService.initializeBoard();
+    const initializeBoard = new InitializeBoard();
+    const boardInitialized = initializeBoard.execute();
 
     setBoard(boardInitialized);
   }, []);

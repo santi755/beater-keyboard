@@ -1,15 +1,10 @@
 import Board from '@/core/contexts/board/domain/Board';
 import GridDrawer from '@/core/contexts/board/domain/GridDrawer';
-import BoardDimension from '../domain/BoardDimension';
 
-export default class StepboardService {
+export default class DrawGrid {
   constructor(private gridDrawer: GridDrawer) {}
 
-  public initializeBoard(): Board {
-    return Board.create([], false, 0, new BoardDimension(800, 384));
-  }
-
-  public drawGrid(board: Board): void {
+  public execute(board: Board): void {
     console.log('Drawing grid');
     if (!board) {
       // TODO: Use a custom error
