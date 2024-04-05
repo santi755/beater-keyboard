@@ -1,7 +1,22 @@
-export default class Instrument {
-  constructor(public name: string) {}
+import InstrumentId from './InstrumentId';
 
-  static create(name: string): Instrument {
-    return new Instrument(name);
+export enum InstrumentType {
+  GUITAR = 'guitar',
+  BASS = 'bass',
+}
+
+export default class Instrument {
+  constructor(
+    public id: InstrumentId,
+    public name: string,
+    public type: InstrumentType
+  ) {}
+
+  static create(
+    id: InstrumentId,
+    name: string,
+    type: InstrumentType
+  ): Instrument {
+    return new Instrument(id, name, type);
   }
 }
