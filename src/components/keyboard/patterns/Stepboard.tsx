@@ -1,5 +1,5 @@
-import { useStepboardCanvas } from '@/hooks/useStepboardCanvas';
-import { useBoardStore } from '@/store';
+import { useStepboardCanvas } from '@src/hooks/useStepboardCanvas';
+import { useBoardStore } from '@src/store';
 
 export const Stepboard = () => {
   const board = useBoardStore((state) => state.board);

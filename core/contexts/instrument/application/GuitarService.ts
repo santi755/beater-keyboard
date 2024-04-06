@@ -1,5 +1,5 @@
-import SoundPlayer from '@/core/contexts/instrument/domain/SoundPlayer';
-import InstrumentService from '@/core/contexts/instrument/domain/InstrumentService';
+import SoundPlayer from '@core/contexts/instrument/domain/SoundPlayer';
+import InstrumentService from '@core/contexts/instrument/domain/InstrumentService';
 
 const config = {
   oscillator: {
@@ -22,6 +22,7 @@ export default class GuitarService implements InstrumentService {
   }
 
   playSound(note: string, duration?: string): void {
+    console.log('Playing sound');
     this.soundPlayer.playSound(note, duration);
   }
 

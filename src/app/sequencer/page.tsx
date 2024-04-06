@@ -2,15 +2,15 @@
 
 import { useEffect, useState, createContext, useContext } from 'react';
 
-import { useBoardStore } from '@/store';
+import { useBoardStore } from '@src/store';
 
-import GuitarService from '@/core/contexts/instrument/application/GuitarService';
-import ToneSoundPlayer from '@/core/contexts/instrument/infrastructure/ToneSoundPlayer';
+import GuitarService from '@core/contexts/instrument/application/GuitarService';
+import ToneSoundPlayer from '@core/contexts/instrument/infrastructure/ToneSoundPlayer';
 
-import InitializeBoard from '@/core/contexts/board/application/InitializeBoard';
+import InitializeBoard from '@core/contexts/board/application/InitializeBoard';
 
-import { Keyboard } from '@/components/keyboard/patterns/Keyboard';
-import { Stepboard } from '@/components/keyboard/patterns/Stepboard';
+import { Keyboard } from '@src/components/keyboard/patterns/Keyboard';
+import { Stepboard } from '@src/components/keyboard/patterns/Stepboard';
 
 const InstrumentContext = createContext<GuitarService | null>(null);
 

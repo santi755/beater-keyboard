@@ -1,5 +1,5 @@
-import Board from '@/core/contexts/board/domain/Board';
-import GridDrawer from '@/core/contexts/board/domain/GridDrawer';
+import Board from '@core/contexts/board/domain/Board';
+import GridDrawer from '@core/contexts/board/domain/GridDrawer';
 
 export default class DrawGrid {
   constructor(private gridDrawer: GridDrawer) {}

@@ -1,4 +1,4 @@
-import Board from '@/core/contexts/board/domain/Board';
+import Board from '@core/contexts/board/domain/Board';
 import BoardDimension from '../domain/BoardDimension';
 
 export default class InitializeBoard {

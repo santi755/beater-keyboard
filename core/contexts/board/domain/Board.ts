@@ -1,5 +1,5 @@
-import Track from '@/core/contexts/board/domain/Track';
-import BoardDimension from '@/core/contexts/board/domain/BoardDimension';
+import Track from '@core/contexts/board/domain/Track';
+import BoardDimension from '@core/contexts/board/domain/BoardDimension';
 
 export default class Board {
   constructor(

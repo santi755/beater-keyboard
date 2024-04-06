@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-import Board from '@/core/contexts/board/domain/Board';
+import Board from '@core/contexts/board/domain/Board';
 
 interface BoardState {
   board: Board | null;
@@ -16,9 +16,9 @@ export const useBoardStore = create<BoardState>()((set) => ({
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-import BoardService from '@/core/contexts/board/application/BoardService';
-import CanvasGridBuilder from '@/core/contexts/board/infrastructure/CanvasGridBuilder';
-import Board from '@/core/contexts/board/domain/Board';
+import BoardService from '@core/contexts/board/application/BoardService';
+import CanvasGridBuilder from '@core/contexts/board/infrastructure/CanvasGridBuilder';
+import Board from '@core/contexts/board/domain/Board';
 
 type BoardState = {
   board: Board | null;

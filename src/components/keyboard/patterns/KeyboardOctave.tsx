@@ -1,8 +1,8 @@
-import InstrumentService from '@/core/contexts/instrument/domain/InstrumentService';
+import InstrumentService from '@core/contexts/instrument/domain/InstrumentService';
 
-import { useInstrument } from '@/app/sequencer/page';
+import { useInstrument } from '@src/app/sequencer/page';
 
-import { KeyButton } from '@/components/keyboard/atoms/KeyButton';
+import { KeyButton } from '@src/components/keyboard/atoms/KeyButton';
 
 interface KeyButtonProps {
   octave: number;

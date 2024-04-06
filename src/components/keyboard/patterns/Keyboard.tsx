@@ -1,6 +1,6 @@
-import { useBoardStore } from '@/store';
+import { useBoardStore } from '@src/store';
 
-import { KeyboardOctave } from '@/components/keyboard/patterns/KeyboardOctave';
+import { KeyboardOctave } from '@src/components/keyboard/patterns/KeyboardOctave';
 
 export const Keyboard = () => {
   const board = useBoardStore((state) => state.board);

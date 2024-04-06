@@ -1,5 +1,5 @@
-import GridDrawer from '@/core/contexts/board/domain/GridDrawer';
-import Board from '@/core/contexts/board/domain/Board';
+import GridDrawer from '@core/contexts/board/domain/GridDrawer';
+import Board from '@core/contexts/board/domain/Board';
 
 const CELL_WIDTH = 40;
 const CELL_HEIGHT = 32;

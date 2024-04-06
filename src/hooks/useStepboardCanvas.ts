@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { useBoardStore } from '@/store';
+import { useBoardStore } from '@src/store';
 
-import DrawGrid from '@/core/contexts/board/application/DrawGrid';
-import CanvasGridDrawer from '@/core/contexts/board/infrastructure/CanvasGridDrawer';
+import DrawGrid from '@core/contexts/board/application/DrawGrid';
+import CanvasGridDrawer from '@core/contexts/board/infrastructure/CanvasGridDrawer';
 
 type InitializeGrid = {
   steps: number;

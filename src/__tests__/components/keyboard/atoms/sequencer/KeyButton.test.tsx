@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { KeyButton } from '@/components/keyboard/atoms/KeyButton';
+import { KeyButton } from '@src/components/keyboard/atoms/KeyButton';
 
 // Write a test suite for your component
 describe('KeyButton', () => {

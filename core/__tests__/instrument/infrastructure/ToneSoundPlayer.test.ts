@@ -1,6 +1,6 @@
 import { test, expect, describe, vi } from 'vitest';
 import { PolySynth } from 'tone';
-import ToneSoundPlayer from '@/core/contexts/instrument/infrastructure/ToneSoundPlayer';
+import ToneSoundPlayer from '@core/contexts/instrument/infrastructure/ToneSoundPlayer';
 
 const mockSynth: PolySynth = {
   set: vi.fn(),
