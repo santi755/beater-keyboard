@@ -45,4 +45,8 @@ export default class Board {
       'B',
     ].reverse();
   }
+
+  public getDimensions(): BoardDimension {
+    return this.dimension;
+  }
 }

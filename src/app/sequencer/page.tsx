@@ -33,7 +33,6 @@ export default function Sequencer() {
 
   return (
     <InstrumentContext.Provider value={instrument}>
-      {JSON.stringify(board)}
       <div className='flex'>
         <Keyboard />
         <Stepboard />
