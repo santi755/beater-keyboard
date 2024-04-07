@@ -5,6 +5,6 @@ export default class InitializeBoard {
   constructor() {}
 
   public execute(): Board {
-    return Board.create([], false, 0, new BoardDimension(800, 384));
+    return Board.create([], false, 0, new BoardDimension(800, 384, 40, 32));
   }
 }

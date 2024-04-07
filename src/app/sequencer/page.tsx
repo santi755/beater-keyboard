@@ -4,27 +4,29 @@ import { useEffect, useState, createContext, useContext } from 'react';
 
 import { useBoardStore } from '@src/store';
 
-import GuitarService from '@core/contexts/instrument/application/GuitarService';
-import ToneSoundPlayer from '@core/contexts/instrument/infrastructure/ToneSoundPlayer';
-
 import InitializeBoard from '@core/contexts/board/application/InitializeBoard';
+import CreateInstrument from '@core/contexts/instrument/application/CreateInstrument';
+import InMemoryInstrumentRepository from '@core/contexts/instrument/infrastructure/InMemoryInstrumentRepository';
+import Instrument, {
+  InstrumentType,
+} from '@core/contexts/instrument/domain/Instrument';
 
 import { Keyboard } from '@src/components/keyboard/patterns/Keyboard';
 import { Stepboard } from '@src/components/keyboard/patterns/Stepboard';
 
-const InstrumentContext = createContext<GuitarService | null>(null);
+const InstrumentContext = createContext<Instrument | null>(null);
 
 export default function Sequencer() {
   const board = useBoardStore((state) => state.board);
   const setBoard = useBoardStore((state) => state.setBoard);
-  const [instrument, setInstrument] = useState<GuitarService | null>(null);
+
+  const inMemoryInstrumentRepository = new InMemoryInstrumentRepository();
+  const createInstrument = new CreateInstrument(inMemoryInstrumentRepository);
+  const [instrument, setInstrument] = useState<Instrument>(
+    createInstrument.create('Guitar', InstrumentType.GUITAR)
+  );
 
   useEffect(() => {
-    const toneSoundPlayer = new ToneSoundPlayer();
-    const guitarService = new GuitarService(toneSoundPlayer);
-
-    setInstrument(guitarService);
-
     const initializeBoard = new InitializeBoard();
     const boardInitialized = initializeBoard.execute();
 

@@ -1,4 +1,5 @@
-import InstrumentService from '@core/contexts/instrument/domain/InstrumentService';
+import PlayInstrument from '@core/contexts/instrument/application/PlayInstrument';
+import ToneSoundPlayer from '@core/contexts/instrument/infrastructure/ToneSoundPlayer';
 
 import { useInstrument } from '@src/app/sequencer/page';
 
@@ -11,13 +12,19 @@ interface KeyButtonProps {
 
 export const KeyboardOctave = ({ octave, notesAvailable }: KeyButtonProps) => {
   const instrument = useInstrument();
+  if (!instrument) {
+    return null;
+  }
+
+  const toneSoundPlayer = new ToneSoundPlayer(instrument);
+  const playInstrument = new PlayInstrument(toneSoundPlayer);
 
   return (
     <div className='grid grid-cols-1'>
       {
         instrument
           ? notesAvailable.map((note) =>
-              BuildKeyButton(note, octave, instrument)
+              BuildKeyButton(note, octave, playInstrument)
             )
           : null // TODO: Loading
       }
@@ -28,7 +35,7 @@ export const KeyboardOctave = ({ octave, notesAvailable }: KeyButtonProps) => {
 function BuildKeyButton(
   note: string,
   octave: number,
-  instrument: InstrumentService
+  playInstrument: PlayInstrument
 ) {
   const keyNote = `${note}${octave}`;
   const type = note.includes('#') ? 'black' : 'white';
@@ -36,9 +43,9 @@ function BuildKeyButton(
     <KeyButton
       key={keyNote}
       text={keyNote}
-      onMouseDown={() => instrument.playSound(keyNote)}
-      onMouseUp={() => instrument.stopSound(keyNote)}
-      onMouseLeave={() => instrument.stopSound(keyNote)}
+      onMouseDown={() => playInstrument.execute(keyNote)}
+      // onMouseUp={() => instrument.stopSound(keyNote)}
+      // onMouseLeave={() => instrument.stopSound(keyNote)}
       noteType={type}
     />
   );

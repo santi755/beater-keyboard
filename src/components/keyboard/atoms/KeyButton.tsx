@@ -1,7 +1,7 @@
 interface KeyButtonProps {
   onMouseDown: () => void;
-  onMouseUp: () => void;
-  onMouseLeave: () => void;
+  //onMouseUp: () => void;
+  //onMouseLeave: () => void;
   text?: string;
   noteType: 'white' | 'black';
 }
