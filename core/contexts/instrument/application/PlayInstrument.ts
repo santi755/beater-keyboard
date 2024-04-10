@@ -1,9 +1,15 @@
+import { inject, injectable } from 'inversify';
 import Instrument from '../domain/Instrument';
-import SoundPlayer from '../domain/SoundPlayer';
+import type SoundPlayer from '../domain/SoundPlayer';
 import InstrumentConfigFactory from '../infrastructure/InstrumentConfigFactory';
+import { TYPES } from '@src/config/types';
 
+@injectable()
 export default class PlayInstrument {
-  constructor(private soundPplayer: SoundPlayer) {}
+  constructor(
+    @inject(TYPES.SoundPlayer)
+    private soundPplayer: SoundPlayer
+  ) {}
 
   public execute(note: string, duration?: string) {
     this.soundPplayer.playSound(note, duration);

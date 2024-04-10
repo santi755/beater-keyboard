@@ -1,9 +1,11 @@
+import { injectable } from 'inversify';
 import { PolySynth, Synth } from 'tone';
 import SoundPlayer from '@core/contexts/instrument/domain/SoundPlayer';
-import Instrument from '@core/contexts/instrument/domain/Instrument';
+import type Instrument from '@core/contexts/instrument/domain/Instrument';
 import InstrumentConfigFactory from '@core/contexts/instrument/infrastructure/InstrumentConfigFactory';
 
-export default class ToneSoundPlayer implements SoundPlayer {
+@injectable()
+class ToneSoundPlayer implements SoundPlayer {
   constructor(
     private instrument: Instrument,
     private synth: PolySynth = new PolySynth(Synth).toDestination()
@@ -20,3 +22,5 @@ export default class ToneSoundPlayer implements SoundPlayer {
     this.synth.triggerRelease(note);
   }
 }
+
+export default ToneSoundPlayer;

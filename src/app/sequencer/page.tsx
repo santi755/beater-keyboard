@@ -5,7 +5,6 @@ import { useEffect, useState, createContext, useContext } from 'react';
 import { useBoardStore } from '@src/store';
 
 import InitializeBoard from '@core/contexts/board/application/InitializeBoard';
-import CreateInstrument from '@core/contexts/instrument/application/CreateInstrument';
 import InMemoryInstrumentRepository from '@core/contexts/instrument/infrastructure/InMemoryInstrumentRepository';
 import Instrument, {
   InstrumentType,
@@ -13,23 +12,28 @@ import Instrument, {
 
 import { Keyboard } from '@src/components/keyboard/patterns/Keyboard';
 import { Stepboard } from '@src/components/keyboard/patterns/Stepboard';
+import container from '@src/config/inversify.config';
+import CreateInstrument from '@core/contexts/instrument/application/CreateInstrument';
+import { TYPES } from '@src/config/types';
 
 const InstrumentContext = createContext<Instrument | null>(null);
 
 export default function Sequencer() {
-  const board = useBoardStore((state) => state.board);
   const setBoard = useBoardStore((state) => state.setBoard);
-
-  const inMemoryInstrumentRepository = new InMemoryInstrumentRepository();
-  const createInstrument = new CreateInstrument(inMemoryInstrumentRepository);
-  const [instrument, setInstrument] = useState<Instrument>(
-    createInstrument.create('Guitar', InstrumentType.GUITAR)
-  );
+  const [instrument, setInstrument] = useState<Instrument | null>(null);
 
   useEffect(() => {
+    const createInstrument = container.get<CreateInstrument>(
+      TYPES.CreateInstrument
+    );
+    const newInstrument = createInstrument.create(
+      'Guitar',
+      InstrumentType.GUITAR
+    );
+    setInstrument(newInstrument);
+
     const initializeBoard = new InitializeBoard();
     const boardInitialized = initializeBoard.execute();
-
     setBoard(boardInitialized);
   }, []);
 
@@ -41,6 +45,8 @@ export default function Sequencer() {
       </div>
     </InstrumentContext.Provider>
   );
+
+  return <p>Testing inversify</p>;
 }
 
 export function useInstrument() {

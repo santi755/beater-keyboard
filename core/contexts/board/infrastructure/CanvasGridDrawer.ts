@@ -1,9 +1,11 @@
+import { injectable } from 'inversify';
 import GridDrawer from '@core/contexts/board/domain/GridDrawer';
 import Board from '@core/contexts/board/domain/Board';
 
 const BORDER_COLOR = '#333';
 
-export default class CanvasGridDrawer implements GridDrawer {
+@injectable()
+class CanvasGridDrawer implements GridDrawer {
   public constructor(
     private readonly canvas: HTMLCanvasElement = document.createElement(
       'canvas'
@@ -38,3 +40,5 @@ export default class CanvasGridDrawer implements GridDrawer {
     context.stroke();
   }
 }
+
+export default CanvasGridDrawer;

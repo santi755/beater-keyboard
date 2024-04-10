@@ -1,7 +1,9 @@
+import { injectable } from 'inversify';
 import TrackHandler from '@core/contexts/board/domain/TrackHandler';
 import Board from '../domain/Board';
 
-export default class CanvasTrackHandler implements TrackHandler {
+@injectable()
+class CanvasTrackHandler implements TrackHandler {
   constructor(
     private board: Board,
     private canvas: HTMLCanvasElement
@@ -30,3 +32,5 @@ export default class CanvasTrackHandler implements TrackHandler {
     */
   public handleTrack(): void {}
 }
+
+export default CanvasTrackHandler;
