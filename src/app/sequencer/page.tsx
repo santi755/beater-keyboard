@@ -11,36 +11,15 @@ import Instrument, {
 
 import { Keyboard } from '@src/components/keyboard/patterns/Keyboard';
 import { Stepboard } from '@src/components/keyboard/patterns/Stepboard';
-import container from '@src/config/inversify.config';
-import { TYPES } from '@src/config/types';
-import ListAvailableInstruments from '@core/contexts/instrument/application/ListAvailableInstrument';
-import GetSelectedInstrument from '@core/contexts/instrument/application/GetSelectedInstrument';
-import SelectInstrument from '@core/contexts/instrument/application/SelectInstrument';
+
+import { InstrumentSelector } from '@src/components/keyboard/patterns/InstrumentSelector';
 
 export default function Sequencer() {
   /*
   const setBoard = useBoardStore((state) => state.setBoard);
 */
-  const [instruments, setInstruments] = useState<Instrument[] | []>([]);
-  const [selectedInstrument, setSelectedInstrument] =
-    useState<Instrument | null>(null);
-
-  const listAvailableInstruments = container.get<ListAvailableInstruments>(
-    TYPES.ListAvailableInstruments
-  );
-
-  const selectInstrument = container.get<SelectInstrument>(
-    TYPES.SelectInstrument
-  );
-
-  const getSelectedInstrument = container.get<GetSelectedInstrument>(
-    TYPES.GetSelectedInstrument
-  );
 
   useEffect(() => {
-    listAvailableInstruments.execute().then((instruments) => {
-      setInstruments(instruments);
-    });
     /*
     const initializeBoard = new InitializeBoard();
     const boardInitialized = initializeBoard.execute();
@@ -48,25 +27,10 @@ export default function Sequencer() {
     */
   }, []);
 
-  const localSelectItem = async (instrument: Instrument) => {
-    selectInstrument.execute(instrument);
-    const selected = await getSelectedInstrument.execute();
-    setSelectedInstrument(selected);
-  };
-
   return (
     <div>
-      <p>Listado de instrumentos. Click para seleccionar uno:</p>
-      <ul>
-        {instruments.map((instrument, index) => (
-          <li key={index} onClick={() => localSelectItem(instrument)}>
-            {instrument.id.value} - {instrument.name}
-          </li>
-        ))}
-      </ul>
-
-      <p>Instrumento seleccionado:</p>
-      <p>{selectedInstrument?.name}</p>
+      <p>Listado dinamico select</p>
+      <InstrumentSelector />
       {/*
     <InstrumentContext.Provider value={instrument}>
       <div className='flex'>

@@ -1,5 +1,5 @@
 import type InstrumentRepository from '@core/contexts/instrument/domain/InstrumentRepository';
-import { TYPES } from '@src/config/types';
+import { TYPES } from '@core/config/types';
 import { inject, injectable } from 'inversify';
 import Instrument from '@core/contexts/instrument/domain/Instrument';
 
