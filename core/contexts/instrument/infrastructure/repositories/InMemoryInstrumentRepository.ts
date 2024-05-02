@@ -2,7 +2,7 @@ import { injectable } from 'inversify';
 
 import Instrument from '@core/contexts/instrument/domain/Instrument';
 import InstrumentRepository from '@core/contexts/instrument/domain/InstrumentRepository';
-import InstrumentInitializator from './configurations/InstrumentInitializator';
+import InstrumentInitializator from '@core/contexts/instrument/infrastructure/configurations/InstrumentInitializator';
 
 @injectable()
 class InMemoryInstrumentRepository implements InstrumentRepository {

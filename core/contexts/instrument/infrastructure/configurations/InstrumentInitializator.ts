@@ -1,5 +1,7 @@
-import Instrument, { InstrumentType } from '../../domain/Instrument';
-import InstrumentId from '../../domain/InstrumentId';
+import Instrument, {
+  InstrumentType,
+} from '@core/contexts/instrument/domain/Instrument';
+import InstrumentId from '@core/contexts/instrument/domain/InstrumentId';
 
 export default class InstrumentInitializator {
   static async initialize(): Promise<Instrument[]> {
