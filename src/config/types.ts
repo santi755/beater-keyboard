@@ -8,4 +8,9 @@ export const TYPES = {
 
   SoundPlayer: Symbol.for('SoundPlayer'),
   PlayInstrument: Symbol.for('PlayInstrument'),
+
+  ListAvailableInstruments: Symbol.for('ListAvailableInstruments'),
+
+  SelectInstrument: Symbol.for('SelectInstrument'),
+  GetSelectedInstrument: Symbol.for('GetSelectedInstrument'),
 };

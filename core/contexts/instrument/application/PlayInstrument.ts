@@ -1,17 +1,16 @@
 import { inject, injectable } from 'inversify';
-import Instrument from '../domain/Instrument';
+import Instrument from '@core/contexts/instrument/domain/Instrument';
 import type SoundPlayer from '../domain/SoundPlayer';
-import InstrumentConfigFactory from '../infrastructure/InstrumentConfigFactory';
 import { TYPES } from '@src/config/types';
 
 @injectable()
 export default class PlayInstrument {
   constructor(
     @inject(TYPES.SoundPlayer)
-    private soundPplayer: SoundPlayer
+    private soundPlayer: SoundPlayer
   ) {}
 
-  public execute(note: string, duration?: string) {
-    this.soundPplayer.playSound(note, duration);
+  public execute(instrument: Instrument, note: string, duration?: string) {
+    this.soundPlayer.playSound(instrument, note, duration || '8n'); // TODO: Check what is the default duration
   }
 }

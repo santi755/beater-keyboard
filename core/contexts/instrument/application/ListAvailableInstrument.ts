@@ -4,13 +4,13 @@ import { inject, injectable } from 'inversify';
 import Instrument from '@core/contexts/instrument/domain/Instrument';
 
 @injectable()
-export default class SelectInstrument {
+export default class ListAvailableInstruments {
   constructor(
     @inject(TYPES.InstrumentRepository)
     private readonly instrumentRepository: InstrumentRepository
   ) {}
 
-  execute(instrument: Instrument): void {
-    this.instrumentRepository.selectInstrument(instrument);
+  execute(): Promise<Instrument[]> {
+    return this.instrumentRepository.findAll();
   }
 }

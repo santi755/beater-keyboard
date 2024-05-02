@@ -1,4 +1,4 @@
+import Instrument from '@core/contexts/instrument/domain/Instrument';
 export default interface SoundPlayer {
-  playSound(note: string, duration?: string): void;
-  stopSound(note: string): void;
+  playSound(instrument: Instrument, note: string, duration: string): void;
 }

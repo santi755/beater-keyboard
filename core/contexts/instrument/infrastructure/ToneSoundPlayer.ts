@@ -1,25 +1,25 @@
+import Tone from 'tone';
 import { injectable } from 'inversify';
-import { PolySynth, Synth } from 'tone';
+
 import SoundPlayer from '@core/contexts/instrument/domain/SoundPlayer';
-import type Instrument from '@core/contexts/instrument/domain/Instrument';
-import InstrumentConfigFactory from '@core/contexts/instrument/infrastructure/InstrumentConfigFactory';
+import Instrument from '@core/contexts/instrument/domain/Instrument';
+import instrumentConfigurations from '@core/contexts/instrument/infrastructure/configurations/InstrumentConfigurations';
 
 @injectable()
 class ToneSoundPlayer implements SoundPlayer {
-  constructor(
-    private instrument: Instrument,
-    private synth: PolySynth = new PolySynth(Synth).toDestination()
-  ) {
-    const config = InstrumentConfigFactory.create(instrument);
-    this.synth.set(config);
+  constructor() {
+    console.log('ToneSoundPlayer montado en singleton!');
+    Tone.Transport.start();
   }
 
-  playSound(note: string, duration: string = '10m'): void {
-    this.synth.triggerAttackRelease(note, duration);
-  }
-
-  stopSound(note: string): void {
-    this.synth.triggerRelease(note);
+  public playSound(
+    instrument: Instrument,
+    note: string,
+    duration: string
+  ): void {
+    const instrumentConfig = instrumentConfigurations.get(instrument.name);
+    const synth = new Tone.Synth(instrumentConfig).toDestination();
+    synth.triggerAttackRelease(note, duration);
   }
 }
 

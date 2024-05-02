@@ -3,6 +3,7 @@ import InstrumentId from './InstrumentId';
 export enum InstrumentType {
   GUITAR = 'guitar',
   BASS = 'bass',
+  PIANO = 'piano',
 }
 
 export default class Instrument {
