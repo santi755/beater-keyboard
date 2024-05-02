@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, createContext, useContext } from 'react';
+import { useEffect } from 'react';
 
 import { useBoardStore } from '@src/store';
 
@@ -14,31 +14,15 @@ import { Stepboard } from '@src/components/keyboard/patterns/Stepboard';
 
 import { InstrumentSelector } from '@src/components/keyboard/patterns/InstrumentSelector';
 
+import container from '@core/config/inversify.config';
+import { Provider } from '@src/config/ioc.react';
+
 export default function Sequencer() {
-  /*
-  const setBoard = useBoardStore((state) => state.setBoard);
-*/
-
-  useEffect(() => {
-    /*
-    const initializeBoard = new InitializeBoard();
-    const boardInitialized = initializeBoard.execute();
-    setBoard(boardInitialized);
-    */
-  }, []);
-
   return (
-    <div>
-      <p>Listado dinamico select</p>
+    <Provider container={container}>
       <InstrumentSelector />
-      {/*
-    <InstrumentContext.Provider value={instrument}>
-      <div className='flex'>
-        <Keyboard />
-        <Stepboard />
-      </div>
-    </InstrumentContext.Provider>
-    */}
-    </div>
+      <Keyboard />
+      {/* <Stepboard /> */}
+    </Provider>
   );
 }

@@ -16,7 +16,7 @@ export const KeyboardOctave = ({ octave, notesAvailable }: KeyButtonProps) => {
     return null;
   }
 
-  const toneSoundPlayer = new ToneSoundPlayer(instrument);
+  const toneSoundPlayer = new ToneSoundPlayer();
   const playInstrument = new PlayInstrument(toneSoundPlayer);
 
   return (

@@ -15,7 +15,7 @@ class InMemoryInstrumentRepository implements InstrumentRepository {
 
   private async initializeIfNeeded(): Promise<void> {
     if (this.instruments.length === 0) {
-      this.instruments = await InstrumentInitializator.execute();
+      this.instruments = await InstrumentInitializator.initialize();
     }
   }
   async findAll(): Promise<Instrument[]> {

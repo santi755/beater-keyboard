@@ -7,12 +7,15 @@ export const Keyboard = () => {
 
   const keyboardOctaves = board?.getOctaves() || [];
   const notesAvailable = board?.getNotesAvailable() || [];
-
+  console.log('octave => ', keyboardOctaves);
   return keyboardOctaves.map((octave) => (
+    <span>{octave}</span>
+    /*
     <KeyboardOctave
       key={octave}
       octave={octave}
       notesAvailable={notesAvailable}
     />
+    */
   ));
 };

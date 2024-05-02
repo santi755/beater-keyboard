@@ -2,7 +2,7 @@ import Instrument, { InstrumentType } from '../../domain/Instrument';
 import InstrumentId from '../../domain/InstrumentId';
 
 export default class InstrumentInitializator {
-  static async execute(): Promise<Instrument[]> {
+  static async initialize(): Promise<Instrument[]> {
     const piano = this.createPiano();
     const guitar = this.createGuitar();
 

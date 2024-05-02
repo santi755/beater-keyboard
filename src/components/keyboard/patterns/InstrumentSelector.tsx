@@ -1,13 +1,14 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import container from '@core/config/inversify.config';
 import { TYPES } from '@core/config/types';
+import { useInjection } from '@src/config/ioc.react';
 
-import Instrument from '@core/contexts/instrument/domain/Instrument';
 import ListAvailableInstruments from '@core/contexts/instrument/application/ListAvailableInstrument';
 import GetSelectedInstrument from '@core/contexts/instrument/application/GetSelectedInstrument';
 import SelectInstrument from '@core/contexts/instrument/application/SelectInstrument';
+
+import Instrument from '@core/contexts/instrument/domain/Instrument';
 
 import { Select } from '@src/components/common/Select';
 
@@ -16,15 +17,15 @@ export const InstrumentSelector = () => {
   const [selectedInstrument, setSelectedInstrument] =
     useState<Instrument | null>(null);
 
-  const listAvailableInstruments = container.get<ListAvailableInstruments>(
+  const listAvailableInstruments = useInjection<ListAvailableInstruments>(
     TYPES.ListAvailableInstruments
   );
 
-  const selectInstrument = container.get<SelectInstrument>(
+  const selectInstrument = useInjection<SelectInstrument>(
     TYPES.SelectInstrument
   );
 
-  const getSelectedInstrument = container.get<GetSelectedInstrument>(
+  const getSelectedInstrument = useInjection<GetSelectedInstrument>(
     TYPES.GetSelectedInstrument
   );
 
