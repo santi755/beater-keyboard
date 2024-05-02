@@ -41,12 +41,6 @@ export default function Sequencer() {
     listAvailableInstruments.execute().then((instruments) => {
       setInstruments(instruments);
     });
-
-    selectInstrument.execute(instruments[0]);
-
-    getSelectedInstrument.execute().then((instrument) => {
-      setSelectedInstrument(instrument);
-    });
     /*
     const initializeBoard = new InitializeBoard();
     const boardInitialized = initializeBoard.execute();
@@ -54,12 +48,18 @@ export default function Sequencer() {
     */
   }, []);
 
+  const localSelectItem = async (instrument: Instrument) => {
+    selectInstrument.execute(instrument);
+    const selected = await getSelectedInstrument.execute();
+    setSelectedInstrument(selected);
+  };
+
   return (
     <div>
       <p>Listado de instrumentos. Click para seleccionar uno:</p>
       <ul>
         {instruments.map((instrument, index) => (
-          <li key={index} onClick={() => selectInstrument.execute(instrument)}>
+          <li key={index} onClick={() => localSelectItem(instrument)}>
             {instrument.id.value} - {instrument.name}
           </li>
         ))}

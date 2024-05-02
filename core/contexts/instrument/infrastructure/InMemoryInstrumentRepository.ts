@@ -26,8 +26,7 @@ class InMemoryInstrumentRepository implements InstrumentRepository {
     this.instruments.push(instrument);
   }
 
-  async selectInstrument(instrument: Instrument): Promise<void> {
-    console.log('Selecting instrument => ', instrument.name);
+  selectInstrument(instrument: Instrument): void {
     this.selectedInstrument = instrument;
   }
 

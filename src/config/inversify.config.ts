@@ -27,7 +27,8 @@ container.bind<TrackHandler>(TYPES.TrackHandler).to(CanvasTrackHandler);
 
 container
   .bind<InstrumentRepository>(TYPES.InstrumentRepository)
-  .to(InMemoryInstrumentRepository);
+  .to(InMemoryInstrumentRepository)
+  .inSingletonScope();
 
 container
   .bind<SoundPlayer>(TYPES.SoundPlayer)
