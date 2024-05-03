@@ -1,5 +1,5 @@
-import Instrument from '../../instrument/domain/Instrument';
-import Note from './Note';
+import Instrument from '@core/contexts/instrument/domain/Instrument';
+import Note from '@core/contexts/instrument/domain/Note';
 
 export default class Track {
   constructor(
