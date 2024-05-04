@@ -9,7 +9,7 @@ import instrumentConfigurations from '@core/contexts/instrument/infrastructure/c
 class ToneSoundPlayer implements SoundPlayer {
   constructor() {
     console.log('ToneSoundPlayer montado en singleton!');
-    Tone.Transport.start();
+    Tone?.Transport.start();
   }
 
   public playSound(
