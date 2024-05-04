@@ -14,6 +14,10 @@ class InMemoryNoteRepository implements NoteRepository {
   setNotesByInstrument(instrumentId: InstrumentId, notes: Note[]): void {
     this.notesByInstrument.set(instrumentId, notes);
   }
+
+  removeNoteByInstrument(instrumentId: InstrumentId, note: Note): void {
+    throw new Error('Method not implemented.');
+  }
 }
 
 export default InMemoryNoteRepository;
