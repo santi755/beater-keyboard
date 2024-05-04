@@ -1,15 +1,17 @@
 import NoteRepository from '@core/contexts/instrument/domain/NoteRepository';
 import { injectable } from 'inversify';
+import Note from '@core/contexts/instrument/domain/Note';
+import InstrumentId from '@core/contexts/instrument/domain/InstrumentId';
 
 @injectable()
 class InMemoryNoteRepository implements NoteRepository {
-  private notesByInstrument: Map<string, string[]> = new Map();
+  private notesByInstrument: Map<InstrumentId, Note[]> = new Map();
 
-  getNotesByInstrument(instrumentId: string): string[] {
+  getNotesByInstrument(instrumentId: InstrumentId): Note[] {
     return this.notesByInstrument.get(instrumentId) || [];
   }
 
-  setNotesByInstrument(instrumentId: string, notes: string[]): void {
+  setNotesByInstrument(instrumentId: InstrumentId, notes: Note[]): void {
     this.notesByInstrument.set(instrumentId, notes);
   }
 }

@@ -1,9 +1,15 @@
 import { Container } from 'inversify';
 import { TYPES } from '@core/config/types';
+
 import type InstrumentRepository from '@core/contexts/instrument/domain/InstrumentRepository';
-import InMemoryInstrumentRepository from '@core/contexts/instrument/infrastructure/InMemoryInstrumentRepository';
+import InMemoryInstrumentRepository from '@core/contexts/instrument/infrastructure/repositories/InMemoryInstrumentRepository';
+
+import type NoteRepository from '@core/contexts/instrument/domain/NoteRepository';
+import InMemoryNoteRepository from '@core/contexts/instrument/infrastructure/repositories/InMemoryNoteRepository';
+
 import SoundPlayer from '@core/contexts/instrument/domain/SoundPlayer';
 import ToneSoundPlayer from '@core/contexts/instrument/infrastructure/ToneSoundPlayer';
+
 import PlayInstrument from '@core/contexts/instrument/application/PlayInstrument';
 import ListAvailableInstruments from '@core/contexts/instrument/application/ListAvailableInstrument';
 import SelectInstrument from '@core/contexts/instrument/application/SelectInstrument';
@@ -13,6 +19,11 @@ export function configureInstrument(container: Container) {
   container
     .bind<InstrumentRepository>(TYPES.InstrumentRepository)
     .to(InMemoryInstrumentRepository)
+    .inSingletonScope();
+
+  container
+    .bind<NoteRepository>(TYPES.NoteRepository)
+    .to(InMemoryNoteRepository)
     .inSingletonScope();
 
   container

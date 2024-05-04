@@ -5,6 +5,7 @@ export const TYPES = {
 
   // Instrument
   InstrumentRepository: Symbol.for('InstrumentRepository'),
+  NoteRepository: Symbol.for('NoteRepository'),
   CreateInstrument: Symbol.for('CreateInstrument'),
   SoundPlayer: Symbol.for('SoundPlayer'),
   PlayInstrument: Symbol.for('PlayInstrument'),
