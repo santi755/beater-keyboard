@@ -12,4 +12,5 @@ export const TYPES = {
   ListAvailableInstruments: Symbol.for('ListAvailableInstruments'),
   SelectInstrument: Symbol.for('SelectInstrument'),
   GetSelectedInstrument: Symbol.for('GetSelectedInstrument'),
+  ListKeyboardNotes: Symbol.for('ListKeyboardNotes'),
 };

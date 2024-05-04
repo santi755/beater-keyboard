@@ -14,6 +14,7 @@ import PlayInstrument from '@core/contexts/instrument/application/PlayInstrument
 import ListAvailableInstruments from '@core/contexts/instrument/application/ListAvailableInstrument';
 import SelectInstrument from '@core/contexts/instrument/application/SelectInstrument';
 import GetSelectedInstrument from '@core/contexts/instrument/application/GetSelectedInstrument';
+import ListKeyboardNotes from '@core/contexts/instrument/application/ListKeyboardNotes';
 
 export function configureInstrument(container: Container) {
   container
@@ -40,4 +41,8 @@ export function configureInstrument(container: Container) {
   container
     .bind<GetSelectedInstrument>(TYPES.GetSelectedInstrument)
     .to(GetSelectedInstrument);
+
+  container
+    .bind<ListKeyboardNotes>(TYPES.ListKeyboardNotes)
+    .to(ListKeyboardNotes);
 }

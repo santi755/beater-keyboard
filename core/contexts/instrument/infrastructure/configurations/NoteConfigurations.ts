@@ -1,6 +1,6 @@
 const noteConfigurations = new Map<string, string[]>([]);
 
-noteConfigurations.set('notes', [
+noteConfigurations.set('octaveNotes', [
   'C',
   'C#',
   'D',
