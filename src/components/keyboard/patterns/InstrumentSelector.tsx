@@ -41,13 +41,18 @@ export const InstrumentSelector = () => {
     setSelectedInstrument(selected);
   };
 
+  const instrumentOptions = [
+    { value: '', label: 'Selecciona un instrumento' },
+    ...instruments.map((instrument) => ({
+      value: instrument.id.value,
+      label: instrument.name,
+    })),
+  ];
+
   return (
     <div>
       <Select
-        options={instruments.map((instrument) => ({
-          value: instrument.id.value,
-          label: instrument.name,
-        }))}
+        options={instrumentOptions}
         onChange={(value) => {
           const instrument = instruments.find(
             (instrument) => instrument.id.value === value
