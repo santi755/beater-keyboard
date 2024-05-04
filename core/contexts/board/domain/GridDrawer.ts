@@ -1,5 +1,5 @@
 import Board from './Board';
 
 export default interface GridDrawer {
-  draw(board: Board): void;
+  draw(board: Board, canvas: HTMLCanvasElement): void;
 }

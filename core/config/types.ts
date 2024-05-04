@@ -1,7 +1,11 @@
+import { Draw } from 'tone';
+
 export const TYPES = {
   // Board
   GridDrawer: Symbol.for('GridDrawer'),
   TrackHandler: Symbol.for('TrackHandler'),
+  BoardRepository: Symbol.for('BoardRepository'),
+  DrawGrid: Symbol.for('DrawGrid'),
 
   // Instrument
   InstrumentRepository: Symbol.for('InstrumentRepository'),

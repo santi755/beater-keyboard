@@ -21,8 +21,11 @@ export default function Sequencer() {
   return (
     <Provider container={container}>
       <InstrumentSelector />
-      <Keyboard />
-      {/* <Stepboard /> */}
+
+      <div className='flex'>
+        <Keyboard />
+        <Stepboard />
+      </div>
     </Provider>
   );
 }

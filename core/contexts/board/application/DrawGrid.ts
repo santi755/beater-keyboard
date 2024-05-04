@@ -1,15 +1,21 @@
+import { inject, injectable } from 'inversify';
+import { TYPES } from '@core/config/types';
+
 import Board from '@core/contexts/board/domain/Board';
-import GridDrawer from '@core/contexts/board/domain/GridDrawer';
+import type GridDrawer from '@core/contexts/board/domain/GridDrawer';
+import type BoardRepository from '@core/contexts/board/domain/BoardRepository';
 
+@injectable()
 export default class DrawGrid {
-  constructor(private gridDrawer: GridDrawer) {}
+  constructor(
+    @inject(TYPES.GridDrawer)
+    private gridDrawer: GridDrawer,
+    @inject(TYPES.BoardRepository)
+    private boardRepository: BoardRepository
+  ) {}
 
-  public execute(board: Board): void {
-    if (!board) {
-      // TODO: Use a custom error
-      throw new Error('Canvas not found');
-    }
-
-    this.gridDrawer.draw(board);
+  public execute(canvas: HTMLCanvasElement): void {
+    const board = this.boardRepository.get();
+    this.gridDrawer.draw(board, canvas);
   }
 }

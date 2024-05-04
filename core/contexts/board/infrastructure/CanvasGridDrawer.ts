@@ -6,14 +6,8 @@ const BORDER_COLOR = '#333';
 
 @injectable()
 class CanvasGridDrawer implements GridDrawer {
-  public constructor(
-    private readonly canvas: HTMLCanvasElement = document.createElement(
-      'canvas'
-    )
-  ) {}
-
-  draw(board: Board): void {
-    const context = this.canvas.getContext('2d');
+  draw(board: Board, canvas: HTMLCanvasElement): void {
+    const context = canvas.getContext('2d');
     const canvasWidth = board.getDimensions().width;
     const canvasHeight = board.getDimensions().height;
     const cellWidth = board.getDimensions().cellWidth;

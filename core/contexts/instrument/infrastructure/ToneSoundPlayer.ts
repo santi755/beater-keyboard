@@ -7,10 +7,6 @@ import instrumentConfigurations from '@core/contexts/instrument/infrastructure/c
 
 @injectable()
 class ToneSoundPlayer implements SoundPlayer {
-  constructor() {
-    console.log('ToneSoundPlayer montado en singleton!');
-  }
-
   public playSound(
     instrument: Instrument,
     note: string,

@@ -1,32 +1,21 @@
 import { useEffect, useRef, useState } from 'react';
-
-import { useBoardStore } from '@src/store';
+import { TYPES } from '@core/config/types';
+import { useInjection } from '@src/config/ioc.react';
 
 import DrawGrid from '@core/contexts/board/application/DrawGrid';
-import CanvasGridDrawer from '@core/contexts/board/infrastructure/CanvasGridDrawer';
 
-type InitializeGrid = {
-  steps: number;
-  notes: Array<string>;
-};
-
-export function useStepboardCanvas({ steps, notes }: InitializeGrid) {
+export function useStepboardCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const board = useBoardStore((state) => state.board);
+  const drawGrid = useInjection<DrawGrid>(TYPES.DrawGrid);
 
   useEffect(() => {
     const canvas = canvasRef.current;
 
     if (!canvas) {
-      // TODO: Use a custom error
       throw new Error('Canvas not found');
     }
 
-    if (!board) return;
-
-    const drawGrid = new DrawGrid(new CanvasGridDrawer(canvas));
-
-    drawGrid.execute(board);
+    drawGrid.execute(canvas);
 
     /******
     // Create cell interaction on click
@@ -56,7 +45,7 @@ export function useStepboardCanvas({ steps, notes }: InitializeGrid) {
     });
 
     *********/
-  }, [board]);
+  }, []);
 
   return {
     canvasRef,

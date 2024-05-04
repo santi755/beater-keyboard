@@ -1,14 +1,7 @@
 import { useStepboardCanvas } from '@src/hooks/useStepboardCanvas';
-import { useBoardStore } from '@src/store';
 
 export const Stepboard = () => {
-  const board = useBoardStore((state) => state.board);
-
-  const notes = board?.getNotesAvailable() || [];
-  const { canvasRef } = useStepboardCanvas({
-    steps: 12,
-    notes,
-  });
+  const { canvasRef } = useStepboardCanvas();
 
   return (
     <>
