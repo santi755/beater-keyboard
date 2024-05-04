@@ -1,5 +1,5 @@
 interface KeyButtonProps {
-  onMouseDown: () => void;
+  //onMouseDown: () => void;
   //onMouseUp: () => void;
   //onMouseLeave: () => void;
   text?: string;
