@@ -1,4 +1,4 @@
-import Tone from 'tone';
+import * as Tone from 'tone';
 import { injectable } from 'inversify';
 
 import SoundPlayer from '@core/contexts/instrument/domain/SoundPlayer';
@@ -9,7 +9,6 @@ import instrumentConfigurations from '@core/contexts/instrument/infrastructure/c
 class ToneSoundPlayer implements SoundPlayer {
   constructor() {
     console.log('ToneSoundPlayer montado en singleton!');
-    Tone?.Transport.start();
   }
 
   public playSound(
@@ -18,8 +17,8 @@ class ToneSoundPlayer implements SoundPlayer {
     duration: string
   ): void {
     const instrumentConfig = instrumentConfigurations.get(instrument.name);
-    const synth = new Tone.Synth(instrumentConfig).toDestination();
-    synth.triggerAttackRelease(note, duration);
+    const currentSynth = new Tone.Synth(instrumentConfig).toDestination();
+    currentSynth.triggerAttackRelease(note, duration);
   }
 }
 
