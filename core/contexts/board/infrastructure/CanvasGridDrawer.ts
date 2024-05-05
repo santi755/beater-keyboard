@@ -11,8 +11,8 @@ class CanvasGridDrawer implements GridDrawer {
     const context = canvas.getContext('2d');
     const canvasWidth = board.getDimension().width;
     const canvasHeight = board.getDimension().height;
-    const cellWidth = board.getDimension().width / 16;
-    const cellHeight = board.getDimension().height / 12;
+    const cellWidth = board.getDimension().cellXQuantity;
+    const cellHeight = board.getDimension().cellYQuantity;
 
     if (!context) {
       // TODO: Use a custom error
