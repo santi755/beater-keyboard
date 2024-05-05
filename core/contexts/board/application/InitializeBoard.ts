@@ -1,10 +1,15 @@
-import Board from '@core/contexts/board/domain/Board';
-import BoardDimension from '../domain/BoardDimension';
+import type BoardRepository from '@core/contexts/board/domain/BoardRepository';
+import { inject, injectable } from 'inversify';
+import { TYPES } from '@core/config/types';
 
+@injectable()
 export default class InitializeBoard {
-  constructor() {}
+  constructor(
+    @inject(TYPES.BoardRepository)
+    private boardRepository: BoardRepository
+  ) {}
 
-  public execute(): Board {
-    return Board.create([], false, 0, new BoardDimension(800, 384, 40, 32));
+  public execute(canvas: HTMLCanvasElement): void {
+    this.boardRepository.save(canvas);
   }
 }

@@ -7,13 +7,17 @@ import BoardInitializator from '@core/contexts/board/infrastructure/configuratio
 
 @injectable()
 export default class InMemoryBoardRepository implements BoardRepository {
-  private board: Board;
+  private board: Board | null = null;
 
-  constructor(canvas: HTMLCanvasElement) {
+  public save(canvas: HTMLCanvasElement): void {
     this.board = BoardInitializator.initialize(canvas);
   }
 
   public get(): Board {
+    if (!this.board) {
+      throw new Error('Board not found');
+    }
+
     return this.board;
   }
 }

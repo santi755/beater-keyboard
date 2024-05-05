@@ -1,7 +1,6 @@
 import { inject, injectable } from 'inversify';
 import { TYPES } from '@core/config/types';
 
-import Board from '@core/contexts/board/domain/Board';
 import type GridDrawer from '@core/contexts/board/domain/GridDrawer';
 import type BoardRepository from '@core/contexts/board/domain/BoardRepository';
 
@@ -14,8 +13,8 @@ export default class DrawGrid {
     private boardRepository: BoardRepository
   ) {}
 
-  public execute(canvas: HTMLCanvasElement): void {
+  public execute(): void {
     const board = this.boardRepository.get();
-    this.gridDrawer.draw(board, canvas);
+    this.gridDrawer.draw(board);
   }
 }

@@ -5,6 +5,7 @@ import BoardRepository from '@core/contexts/board/domain/BoardRepository';
 import InMemoryBoardRepository from '@core/contexts/board/infrastructure/repository/InMemoryBoardRepository';
 
 import DrawGrid from '@core/contexts/board/application/DrawGrid';
+import InitializeBoard from '@core/contexts/board/application/InitializeBoard';
 
 import GridDrawer from '@core/contexts/board/domain/GridDrawer';
 import CanvasGridDrawer from '@core/contexts/board/infrastructure/CanvasGridDrawer';
@@ -18,5 +19,9 @@ export function configureBoard(container: Container) {
   container
     .bind<BoardRepository>(TYPES.BoardRepository)
     .to(InMemoryBoardRepository)
+    .inSingletonScope();
+  container
+    .bind<InitializeBoard>(TYPES.InitializeBoard)
+    .to(InitializeBoard)
     .inSingletonScope();
 }

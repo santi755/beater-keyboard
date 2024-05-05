@@ -6,6 +6,7 @@ export const TYPES = {
   TrackHandler: Symbol.for('TrackHandler'),
   BoardRepository: Symbol.for('BoardRepository'),
   DrawGrid: Symbol.for('DrawGrid'),
+  InitializeBoard: Symbol.for('InitializeBoard'),
 
   // Instrument
   InstrumentRepository: Symbol.for('InstrumentRepository'),

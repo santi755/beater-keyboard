@@ -6,12 +6,13 @@ const BORDER_COLOR = '#333';
 
 @injectable()
 class CanvasGridDrawer implements GridDrawer {
-  draw(board: Board, canvas: HTMLCanvasElement): void {
+  draw(board: Board): void {
+    const canvas = board.getCanvas();
     const context = canvas.getContext('2d');
-    const canvasWidth = board.getDimensions().width;
-    const canvasHeight = board.getDimensions().height;
-    const cellWidth = board.getDimensions().cellWidth;
-    const cellHeight = board.getDimensions().cellHeight;
+    const canvasWidth = board.getDimension().width;
+    const canvasHeight = board.getDimension().height;
+    const cellWidth = board.getDimension().width / 16;
+    const cellHeight = board.getDimension().height / 12;
 
     if (!context) {
       // TODO: Use a custom error
