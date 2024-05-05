@@ -7,15 +7,20 @@ import InMemoryBoardRepository from '@core/contexts/board/infrastructure/reposit
 import DrawGrid from '@core/contexts/board/application/DrawGrid';
 import InitializeBoard from '@core/contexts/board/application/InitializeBoard';
 
+import HandleBoardClick from '@core/contexts/board/application/HandleBoardClick';
+
 import GridDrawer from '@core/contexts/board/domain/GridDrawer';
 import CanvasGridDrawer from '@core/contexts/board/infrastructure/CanvasGridDrawer';
-import TrackHandler from '@core/contexts/board/domain/TrackHandler';
-import CanvasTrackHandler from '@core/contexts/board/infrastructure/CanvasTrackHandler';
+import BoardInteraction from '@core/contexts/board/domain/BoardInteraction';
+import ClickBoardInteraction from '@core/contexts/board/infrastructure/ClickBoardInteraction';
 
 export function configureBoard(container: Container) {
   container.bind<DrawGrid>(TYPES.DrawGrid).to(DrawGrid);
   container.bind<GridDrawer>(TYPES.GridDrawer).to(CanvasGridDrawer);
-  container.bind<TrackHandler>(TYPES.TrackHandler).to(CanvasTrackHandler);
+  container.bind<HandleBoardClick>(TYPES.HandleBoardClick).to(HandleBoardClick);
+  container
+    .bind<BoardInteraction>(TYPES.BoardInteraction)
+    .to(ClickBoardInteraction);
   container
     .bind<BoardRepository>(TYPES.BoardRepository)
     .to(InMemoryBoardRepository)

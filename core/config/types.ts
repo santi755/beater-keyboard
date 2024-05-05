@@ -3,10 +3,11 @@ import { Draw } from 'tone';
 export const TYPES = {
   // Board
   GridDrawer: Symbol.for('GridDrawer'),
-  TrackHandler: Symbol.for('TrackHandler'),
+  BoardInteraction: Symbol.for('BoardInteraction'),
   BoardRepository: Symbol.for('BoardRepository'),
   DrawGrid: Symbol.for('DrawGrid'),
   InitializeBoard: Symbol.for('InitializeBoard'),
+  HandleBoardClick: Symbol.for('HandleBoardClick'),
 
   // Instrument
   InstrumentRepository: Symbol.for('InstrumentRepository'),

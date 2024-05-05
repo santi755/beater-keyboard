@@ -18,8 +18,8 @@ export default class BoardInitializator {
       new BoardDimension(
         BOARD_WIDTH,
         BOARD_HEIGHT,
-        CELL_X_QUANTITY,
-        CELL_Y_QUANTITY
+        BOARD_WIDTH / CELL_X_QUANTITY,
+        BOARD_HEIGHT / CELL_Y_QUANTITY
       )
     );
   }
