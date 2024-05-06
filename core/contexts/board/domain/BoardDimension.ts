@@ -2,16 +2,24 @@ export default class BoardDimension {
   constructor(
     readonly width: number,
     readonly height: number,
-    readonly cellXQuantity: number,
-    readonly cellYQuantity: number
+    readonly cellXWidth: number,
+    readonly cellYHeight: number
   ) {}
 
   static create(
     width: number,
     height: number,
-    cellXQuantity: number,
-    cellYQuantity: number
+    cellXWidth: number,
+    cellYHeight: number
   ): BoardDimension {
-    return new BoardDimension(width, height, cellXQuantity, cellYQuantity);
+    return new BoardDimension(width, height, cellXWidth, cellYHeight);
+  }
+
+  getCellWidth(): number {
+    return this.width / this.cellXWidth;
+  }
+
+  getCellHeight(): number {
+    return this.height / this.cellYHeight;
   }
 }

@@ -11,8 +11,8 @@ class CanvasGridDrawer implements GridDrawer {
     const context = canvas.getContext('2d');
     const canvasWidth = board.getDimension().width;
     const canvasHeight = board.getDimension().height;
-    const cellWidth = board.getDimension().cellXQuantity;
-    const cellHeight = board.getDimension().cellYQuantity;
+    const cellWidth = board.getDimension().cellXWidth;
+    const cellHeight = board.getDimension().cellYHeight;
 
     if (!context) {
       // TODO: Use a custom error
@@ -22,6 +22,7 @@ class CanvasGridDrawer implements GridDrawer {
     context.clearRect(0, 0, canvasWidth, canvasHeight);
     context.strokeStyle = BORDER_COLOR;
 
+    // TODO: Check if it's necessary to refactor this
     for (let x = 0; x <= canvasWidth; x += cellWidth) {
       context.moveTo(x, 0);
       context.lineTo(x, canvasHeight);
