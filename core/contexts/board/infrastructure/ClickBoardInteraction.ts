@@ -17,7 +17,6 @@ class ClickBoardInteraction implements BoardInteraction {
     const canvas = board.getCanvas();
 
     canvas.addEventListener('click', (event) => {
-      console.log('event = ', event);
       const { offsetX, offsetY } = event;
 
       const { x, y } = GridPositionMapper.mapToGridPosition(
@@ -28,6 +27,7 @@ class ClickBoardInteraction implements BoardInteraction {
       );
 
       console.log(`Clicked on cell: ${x}, ${y}`);
+      // TODO: Implement event emitter
     });
   }
 }
