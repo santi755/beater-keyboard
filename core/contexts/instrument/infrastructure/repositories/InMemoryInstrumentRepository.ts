@@ -2,28 +2,22 @@ import { injectable } from 'inversify';
 
 import Instrument from '@core/contexts/instrument/domain/Instrument';
 import InstrumentRepository from '@core/contexts/instrument/domain/InstrumentRepository';
-import InstrumentInitializator from '@core/contexts/instrument/infrastructure/configurations/InstrumentInitializator';
 
 @injectable()
 class InMemoryInstrumentRepository implements InstrumentRepository {
   private instruments: Instrument[] = [];
   private selectedInstrument: Instrument | null = null;
 
-  constructor() {
-    this.initializeIfNeeded();
-  }
-
-  private async initializeIfNeeded(): Promise<void> {
-    if (this.instruments.length === 0) {
-      this.instruments = await InstrumentInitializator.initialize();
-    }
-  }
   async findAll(): Promise<Instrument[]> {
     return this.instruments;
   }
 
   async save(instrument: Instrument): Promise<void> {
     this.instruments.push(instrument);
+  }
+
+  async saveAll(instruments: Instrument[]): Promise<void> {
+    this.instruments = instruments;
   }
 
   selectInstrument(instrument: Instrument): void {

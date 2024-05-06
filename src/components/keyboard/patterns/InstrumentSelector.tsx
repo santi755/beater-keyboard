@@ -11,28 +11,34 @@ import SelectInstrument from '@core/contexts/instrument/application/SelectInstru
 import Instrument from '@core/contexts/instrument/domain/Instrument';
 
 import { Select } from '@src/components/common/Select';
+import InitializeInstruments from '@core/contexts/instrument/application/InitializeInstruments';
 
 export const InstrumentSelector = () => {
   const [instruments, setInstruments] = useState<Instrument[] | []>([]);
   const [selectedInstrument, setSelectedInstrument] =
     useState<Instrument | null>(null);
 
+  const initializeInstruments = useInjection<InitializeInstruments>(
+    TYPES.InitializeInstruments
+  );
   const listAvailableInstruments = useInjection<ListAvailableInstruments>(
     TYPES.ListAvailableInstruments
   );
-
   const selectInstrument = useInjection<SelectInstrument>(
     TYPES.SelectInstrument
   );
-
   const getSelectedInstrument = useInjection<GetSelectedInstrument>(
     TYPES.GetSelectedInstrument
   );
 
   useEffect(() => {
-    listAvailableInstruments.execute().then((instruments) => {
+    async function initialize() {
+      await initializeInstruments.execute();
+      const instruments = await listAvailableInstruments.execute();
       setInstruments(instruments);
-    });
+    }
+
+    initialize();
   }, []);
 
   const localSelectItem = async (instrument: Instrument) => {
