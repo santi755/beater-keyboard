@@ -1,5 +1,6 @@
 import InstrumentId from './InstrumentId';
 
+// TODO: Refactor to a value object
 export enum InstrumentType {
   GUITAR = 'guitar',
   BASS = 'bass',
