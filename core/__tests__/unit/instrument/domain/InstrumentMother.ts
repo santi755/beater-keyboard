@@ -8,9 +8,9 @@ import InstrumentId from '@core/contexts/instrument/domain/InstrumentId';
 
 export default class InstrumentMother {
   static random(
-    id: InstrumentId,
-    name: string,
-    type: InstrumentType
+    id: InstrumentId | null,
+    name: string | null,
+    type: InstrumentType | null
   ): Instrument {
     return new Instrument(
       id ?? InstrumentIdMother.random(),
