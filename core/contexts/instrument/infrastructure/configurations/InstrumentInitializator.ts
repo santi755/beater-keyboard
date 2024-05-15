@@ -1,7 +1,6 @@
-import Instrument, {
-  InstrumentType,
-} from '@core/contexts/instrument/domain/Instrument';
+import Instrument from '@core/contexts/instrument/domain/Instrument';
 import InstrumentId from '@core/contexts/instrument/domain/InstrumentId';
+import InstrumentType from '@core/contexts/instrument/domain/InstrumentType';
 
 export default class InstrumentInitializator {
   static async initialize(): Promise<Instrument[]> {
@@ -15,7 +14,7 @@ export default class InstrumentInitializator {
     return new Instrument(
       InstrumentId.generate(),
       'Default piano',
-      InstrumentType.PIANO
+      InstrumentType.of('piano')
     );
   }
 
@@ -23,7 +22,7 @@ export default class InstrumentInitializator {
     return new Instrument(
       InstrumentId.generate(),
       'Default guitar',
-      InstrumentType.GUITAR
+      InstrumentType.of('guitar')
     );
   }
 }

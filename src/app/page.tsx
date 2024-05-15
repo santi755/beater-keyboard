@@ -1,14 +1,5 @@
 'use client';
 
-import { useEffect } from 'react';
-
-import { useBoardStore } from '@src/store';
-
-import InitializeBoard from '@core/contexts/board/application/InitializeBoard';
-import Instrument, {
-  InstrumentType,
-} from '@core/contexts/instrument/domain/Instrument';
-
 import { Keyboard } from '@src/components/keyboard/patterns/Keyboard';
 import { Stepboard } from '@src/components/keyboard/patterns/Stepboard';
 

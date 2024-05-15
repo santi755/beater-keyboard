@@ -2,8 +2,8 @@ import ValueObject from '@core/contexts/shared/domain/ValueObject';
 
 export enum InstrumentTypeEnum {
   BASS = 'bass',
-  PIANO = 'piano',
   GUITAR = 'guitar',
+  PIANO = 'piano',
 }
 
 export default class InstrumentType extends ValueObject<string> {

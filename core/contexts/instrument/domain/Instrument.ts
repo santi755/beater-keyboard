@@ -1,11 +1,5 @@
 import InstrumentId from './InstrumentId';
-
-// TODO: Refactor to a value object
-export enum InstrumentType {
-  GUITAR = 'guitar',
-  BASS = 'bass',
-  PIANO = 'piano',
-}
+import InstrumentType from './InstrumentType';
 
 export default class Instrument {
   constructor(
