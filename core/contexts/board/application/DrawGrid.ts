@@ -1,6 +1,5 @@
 import { inject, injectable } from 'inversify';
 import { TYPES } from '@core/config/types';
-
 import type GridDrawer from '@core/contexts/board/domain/GridDrawer';
 import type BoardRepository from '@core/contexts/board/domain/BoardRepository';
 

@@ -1,8 +1,6 @@
 import { inject, injectable } from 'inversify';
 import Instrument from '@core/contexts/instrument/domain/Instrument';
-import type SoundPlayer from '../domain/SoundPlayer';
 import { TYPES } from '@core/config/types';
-import Note from '@core/contexts/instrument/domain/Note';
 import type NoteRepository from '@core/contexts/instrument/domain/NoteRepository';
 
 @injectable()
