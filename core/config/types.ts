@@ -1,5 +1,3 @@
-import { Draw } from 'tone';
-
 export const TYPES = {
   // Board
   GridDrawer: Symbol.for('GridDrawer'),
