@@ -34,7 +34,15 @@ export default class InstrumentRepositoryMock implements InstrumentRepository {
     expect(this.saveMock).toHaveBeenCalled();
   }
 
+  shouldNotSave(): void {
+    expect(this.saveMock).not.toHaveBeenCalled();
+  }
+
   shouldSaveAll(): void {
     expect(this.saveAllMock).toHaveBeenCalled();
+  }
+
+  shouldNotSaveAll(): void {
+    expect(this.saveAllMock).not.toHaveBeenCalled();
   }
 }
