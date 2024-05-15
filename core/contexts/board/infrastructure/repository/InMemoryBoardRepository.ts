@@ -1,9 +1,9 @@
 import { injectable } from 'inversify';
 
 import Board from '@core/contexts/board/domain/Board';
-import BoardDimension from '@core/contexts/board/domain/BoardDimension';
 import BoardRepository from '@core/contexts/board/domain/BoardRepository';
 import BoardInitializator from '@core/contexts/board/infrastructure/configurations/BoardInitializator';
+import BoardNotFoundException from '@core/contexts/board/domain/BoardNotFoundException';
 
 @injectable()
 export default class InMemoryBoardRepository implements BoardRepository {
@@ -15,7 +15,7 @@ export default class InMemoryBoardRepository implements BoardRepository {
 
   public get(): Board {
     if (!this.board) {
-      throw new Error('Board not found');
+      throw new BoardNotFoundException();
     }
 
     return this.board;

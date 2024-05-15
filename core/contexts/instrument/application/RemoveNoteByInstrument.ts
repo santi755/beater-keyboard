@@ -2,6 +2,7 @@ import { inject, injectable } from 'inversify';
 import Instrument from '@core/contexts/instrument/domain/Instrument';
 import { TYPES } from '@core/config/types';
 import type NoteRepository from '@core/contexts/instrument/domain/NoteRepository';
+import NoteNotFoundException from '@core/contexts/instrument/domain/NoteNotFoundException';
 
 @injectable()
 export default class AddNoteByInstrument {
@@ -21,7 +22,7 @@ export default class AddNoteByInstrument {
       .find((n) => n.step === step);
 
     if (!currentNote) {
-      throw new Error('Note not found');
+      throw new NoteNotFoundException();
     }
 
     this.noteRepository.removeNoteByInstrument(instrument.id, currentNote);

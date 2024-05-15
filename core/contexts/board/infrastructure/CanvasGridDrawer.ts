@@ -1,6 +1,7 @@
 import { injectable } from 'inversify';
 import GridDrawer from '@core/contexts/board/domain/GridDrawer';
 import Board from '@core/contexts/board/domain/Board';
+import CanvasContextNotFoundException from '@core/contexts/board/domain/CanvasContextNotFoundException';
 
 const BORDER_COLOR = '#333';
 
@@ -15,8 +16,7 @@ class CanvasGridDrawer implements GridDrawer {
     const cellHeight = board.getDimension().cellYHeight;
 
     if (!context) {
-      // TODO: Use a custom error
-      throw new Error('Canvas context not found');
+      throw new CanvasContextNotFoundException();
     }
 
     context.clearRect(0, 0, canvasWidth, canvasHeight);
