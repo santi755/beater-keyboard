@@ -1,15 +1,18 @@
 import { inject, injectable } from 'inversify';
 import BoardInteraction from '@core/contexts/board/domain/BoardInteraction';
-import Board from '../domain/Board';
 import GridPositionMapper from '@core/contexts/board/infrastructure/GridPositionMapper';
 import { TYPES } from '@core/config/types';
 import type BoardRepository from '@core/contexts/board/domain/BoardRepository';
+import ClickEvent from '@core/contexts/shared/domain/events/ClickEvent';
+import EventNotifier from '@core/contexts/shared/domain/events/EventNotifier';
 
 @injectable()
 class ClickBoardInteraction implements BoardInteraction {
   constructor(
     @inject(TYPES.BoardRepository)
-    private boardRepository: BoardRepository
+    private boardRepository: BoardRepository,
+    @inject(TYPES.EventNotifier)
+    private eventNotifier: EventNotifier<ClickEvent>
   ) {}
 
   public handleClick(): void {
@@ -26,8 +29,7 @@ class ClickBoardInteraction implements BoardInteraction {
         offsetY
       );
 
-      console.log(`Clicked on cell: ${x}, ${y}`);
-      // TODO: Implement event emitter
+      this.eventNotifier.notify('CLICK_EVENT', { x, y });
     });
   }
 }

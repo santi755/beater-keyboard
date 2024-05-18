@@ -1,12 +1,21 @@
-import { injectable } from 'inversify';
+import { inject, injectable } from 'inversify';
 import GridDrawer from '@core/contexts/board/domain/GridDrawer';
 import Board from '@core/contexts/board/domain/Board';
 import CanvasContextNotFoundException from '@core/contexts/board/domain/CanvasContextNotFoundException';
+import Observer from '@core/contexts/shared/domain/events/Observer';
+import ClickEvent from '@core/contexts/shared/domain/events/ClickEvent';
+import { TYPES } from '@core/config/types';
+import EventNotifier from '@core/contexts/shared/domain/events/EventNotifier';
 
 const BORDER_COLOR = '#333';
 
 @injectable()
-class CanvasGridDrawer implements GridDrawer {
+class CanvasGridDrawer implements GridDrawer, Observer<ClickEvent> {
+  constructor(
+    @inject(TYPES.EventNotifier)
+    private eventNotifier: EventNotifier<ClickEvent>
+  ) {}
+
   draw(board: Board): void {
     const canvas = board.getCanvas();
     const context = canvas.getContext('2d');
@@ -34,6 +43,10 @@ class CanvasGridDrawer implements GridDrawer {
     }
 
     context.stroke();
+  }
+
+  public update(data: ClickEvent): void {
+    console.log('ClickBoardInteraction notified with data: ', data);
   }
 }
 
