@@ -1,7 +1,8 @@
 import { TYPES } from '@core/config/types';
 import GridDrawer from '@core/contexts/board/domain/GridDrawer';
-import ClickEvent from '@core/contexts/shared/domain/events/ClickEvent';
+import EventTypes from '@core/contexts/shared/domain/events/EventTypes';
 import EventNotifier from '@core/contexts/shared/domain/events/EventNotifier';
+import ClickEvent from '@core/contexts/shared/domain/events/ClickEvent';
 import Observer from '@core/contexts/shared/domain/events/Observer';
 import { Container } from 'inversify';
 import { useEffect } from 'react';
@@ -12,7 +13,7 @@ function useEventNotifierInitialization(container: Container) {
       TYPES.GridDrawer
     );
 
-    const eventNotifier = container.get<EventNotifier<ClickEvent>>(
+    const eventNotifier = container.get<EventNotifier<EventTypes>>(
       TYPES.EventNotifier
     );
 

@@ -5,6 +5,7 @@ import { TYPES } from '@core/config/types';
 import type BoardRepository from '@core/contexts/board/domain/BoardRepository';
 import ClickEvent from '@core/contexts/shared/domain/events/ClickEvent';
 import EventNotifier from '@core/contexts/shared/domain/events/EventNotifier';
+import EventTypes from '@core/contexts/shared/domain/events/EventTypes';
 
 @injectable()
 class ClickBoardInteraction implements BoardInteraction {
@@ -12,7 +13,7 @@ class ClickBoardInteraction implements BoardInteraction {
     @inject(TYPES.BoardRepository)
     private boardRepository: BoardRepository,
     @inject(TYPES.EventNotifier)
-    private eventNotifier: EventNotifier<ClickEvent>
+    private eventNotifier: EventNotifier<EventTypes>
   ) {}
 
   public handleClick(): void {
