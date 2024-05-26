@@ -1,5 +1,7 @@
-enum EventTypes {
-  BOARD_CLICK = 'BOARD_CLICK',
-}
+import ClickEvent from '@core/contexts/shared/domain/events/ClickEvent';
+
+type EventTypes = {
+  CLICK_EVENT: ClickEvent;
+};
 
 export default EventTypes;
