@@ -4,6 +4,7 @@ export const TYPES = {
   BoardInteraction: Symbol.for('BoardInteraction'),
   BoardRepository: Symbol.for('BoardRepository'),
   DrawGrid: Symbol.for('DrawGrid'),
+  DrawNoteOnGrid: Symbol.for('DrawNoteOnGrid'),
   InitializeBoard: Symbol.for('InitializeBoard'),
   HandleBoardClick: Symbol.for('HandleBoardClick'),
 

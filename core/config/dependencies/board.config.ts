@@ -5,6 +5,7 @@ import BoardRepository from '@core/contexts/board/domain/BoardRepository';
 import InMemoryBoardRepository from '@core/contexts/board/infrastructure/repository/InMemoryBoardRepository';
 
 import DrawGrid from '@core/contexts/board/application/DrawGrid';
+import DrawNoteOnGrid from '@core/contexts/board/application/DrawNoteOnGrid';
 import InitializeBoard from '@core/contexts/board/application/InitializeBoard';
 
 import HandleBoardClick from '@core/contexts/board/application/HandleBoardClick';
@@ -16,6 +17,7 @@ import ClickBoardInteraction from '@core/contexts/board/infrastructure/ClickBoar
 
 export function configureBoard(container: Container) {
   container.bind<DrawGrid>(TYPES.DrawGrid).to(DrawGrid);
+  container.bind<DrawNoteOnGrid>(TYPES.DrawNoteOnGrid).to(DrawNoteOnGrid);
   container.bind<GridDrawer>(TYPES.GridDrawer).to(CanvasGridDrawer);
   container.bind<HandleBoardClick>(TYPES.HandleBoardClick).to(HandleBoardClick);
   container
