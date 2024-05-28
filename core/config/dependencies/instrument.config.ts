@@ -16,6 +16,7 @@ import SelectInstrument from '@core/contexts/instrument/application/SelectInstru
 import GetSelectedInstrument from '@core/contexts/instrument/application/GetSelectedInstrument';
 import ListKeyboardNotes from '@core/contexts/instrument/application/ListKeyboardNotes';
 import InitializeInstruments from '@core/contexts/instrument/application/InitializeInstruments';
+import AddNoteByInstrument from '@core/contexts/instrument/application/AddNoteByInstrument';
 
 export function configureInstrument(container: Container) {
   container
@@ -50,4 +51,8 @@ export function configureInstrument(container: Container) {
   container
     .bind<InitializeInstruments>(TYPES.InitializeInstruments)
     .to(InitializeInstruments);
+
+  container
+    .bind<AddNoteByInstrument>(TYPES.AddNoteByInstrument)
+    .to(AddNoteByInstrument);
 }

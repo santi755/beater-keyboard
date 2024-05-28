@@ -7,6 +7,7 @@ import ClickEvent from '@core/contexts/shared/domain/events/ClickEvent';
 import Observer from '@core/contexts/shared/domain/events/Observer';
 import { Container } from 'inversify';
 import { useEffect } from 'react';
+import AddNoteByInstrument from '@core/contexts/instrument/application/AddNoteByInstrument';
 
 function useEventNotifierInitialization(container: Container) {
   useEffect(() => {
@@ -14,11 +15,16 @@ function useEventNotifierInitialization(container: Container) {
       TYPES.DrawNoteOnGrid
     );
 
+    const AddNoteByInstrument = container.get<
+      AddNoteByInstrument & Observer<ClickEvent>
+    >(TYPES.AddNoteByInstrument);
+
     const eventNotifier = container.get<EventNotifier<EventTypes>>(
       TYPES.EventNotifier
     );
 
     eventNotifier.subscribe('CLICK_EVENT', drawNoteOnGrid);
+    eventNotifier.subscribe('CLICK_EVENT', AddNoteByInstrument);
   }, [container]);
 }
 
