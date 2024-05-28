@@ -4,26 +4,32 @@ import type SoundPlayer from '../domain/SoundPlayer';
 import { TYPES } from '@core/config/types';
 import Note from '@core/contexts/instrument/domain/Note';
 import type NoteRepository from '@core/contexts/instrument/domain/NoteRepository';
+import Observer from '@core/contexts/shared/domain/events/Observer';
+import ClickEvent from '@core/contexts/shared/domain/events/ClickEvent';
+import NoteFactory from '@core/contexts/instrument/infrastructure/NoteFactory';
+import type InstrumentRepository from '@core/contexts/instrument/domain/InstrumentRepository';
+import InstrumentIsNotSelectedException from '@core/contexts/instrument/domain/InstrumentIsNotSelectedException';
 
 @injectable()
-export default class AddNoteByInstrument {
+export default class AddNoteByInstrument implements Observer<ClickEvent> {
   constructor(
+    @inject(TYPES.InstrumentRepository)
+    private instrumentRepository: InstrumentRepository,
     @inject(TYPES.NoteRepository)
     private noteRepository: NoteRepository
   ) {}
 
-  public execute(
-    instrument: Instrument,
-    note: string,
-    duration: number,
-    step: number
-  ) {
-    const currentNote = Note.create(step, note, duration);
+  public async update(data: ClickEvent): Promise<void> {
+    const instrument = await this.instrumentRepository.getSelectedInstrument();
+
+    if (!instrument) {
+      throw new InstrumentIsNotSelectedException();
+    }
+
+    const note = NoteFactory.createNoteFromCoordinates(data.x, data.y);
     this.noteRepository.setNotesByInstrument(
       instrument.id,
-      this.noteRepository
-        .getNotesByInstrument(instrument.id)
-        .concat(currentNote)
+      this.noteRepository.getNotesByInstrument(instrument.id).concat(note)
     );
   }
 }
