@@ -69,7 +69,7 @@ export const InstrumentSelector = () => {
         }}
       />
 
-      <p>Instrumento seleccionado:</p>
+      <p>Instrumento seleccionado: </p>
       <p>{selectedInstrument?.name}</p>
     </div>
   );
