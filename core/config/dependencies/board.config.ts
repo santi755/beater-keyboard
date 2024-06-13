@@ -2,7 +2,7 @@ import { Container } from 'inversify';
 import { TYPES } from '@core/config/types';
 
 import BoardRepository from '@core/contexts/board/domain/BoardRepository';
-import InMemoryBoardRepository from '@core/contexts/board/infrastructure/repository/InMemoryBoardRepository';
+import InMemoryBoardRepository from '@core/contexts/board/infrastructure/repositories/InMemoryBoardRepository';
 
 import DrawGrid from '@core/contexts/board/application/DrawGrid';
 import DrawNoteOnGrid from '@core/contexts/board/application/DrawNoteOnGrid';
