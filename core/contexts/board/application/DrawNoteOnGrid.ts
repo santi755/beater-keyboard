@@ -6,6 +6,7 @@ import type BoardRepository from '@core/contexts/board/domain/BoardRepository';
 import Observer from '@core/contexts/shared/domain/events/Observer';
 import NoteCreatedEvent from '@core/contexts/shared/domain/events/NoteCreatedEvent';
 import { TYPES } from '@core/config/types';
+import NoteFactory from '@core/contexts/instrument/infrastructure/NoteFactory';
 
 @injectable()
 export default class DrawNoteOnGrid implements Observer<NoteCreatedEvent> {
@@ -28,7 +29,7 @@ export default class DrawNoteOnGrid implements Observer<NoteCreatedEvent> {
       throw new CanvasContextNotFoundException();
     }
 
-    const { x, y, note } = data;
+    const { x, y } = NoteFactory.createCoordinatesFromNote(data.note);
 
     context.fillStyle = 'green';
     context.fillRect(
