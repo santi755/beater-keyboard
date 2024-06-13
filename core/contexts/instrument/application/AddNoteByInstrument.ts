@@ -9,6 +9,8 @@ import ClickEvent from '@core/contexts/shared/domain/events/ClickEvent';
 import NoteFactory from '@core/contexts/instrument/infrastructure/NoteFactory';
 import type InstrumentRepository from '@core/contexts/instrument/domain/InstrumentRepository';
 import InstrumentIsNotSelectedException from '@core/contexts/instrument/domain/InstrumentIsNotSelectedException';
+import EventNotifier from '@core/contexts/shared/domain/events/EventNotifier';
+import EventTypes from '@core/contexts/shared/domain/events/EventTypes';
 
 @injectable()
 export default class AddNoteByInstrument implements Observer<ClickEvent> {
@@ -16,7 +18,9 @@ export default class AddNoteByInstrument implements Observer<ClickEvent> {
     @inject(TYPES.InstrumentRepository)
     private instrumentRepository: InstrumentRepository,
     @inject(TYPES.NoteRepository)
-    private noteRepository: NoteRepository
+    private noteRepository: NoteRepository,
+    @inject(TYPES.EventNotifier)
+    private eventNotifier: EventNotifier<EventTypes>
   ) {}
 
   public async update(data: ClickEvent): Promise<void> {
@@ -31,5 +35,11 @@ export default class AddNoteByInstrument implements Observer<ClickEvent> {
       instrument.id,
       this.noteRepository.getNotesByInstrument(instrument.id).concat(note)
     );
+
+    this.eventNotifier.notify('NOTE_CREATED_EVENT', {
+      x: data.x,
+      y: data.y,
+      note: note,
+    });
   }
 }
