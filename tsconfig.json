@@ -20,7 +20,8 @@
     ],
     "paths": {
       "@src/*": ["./src/*"],
-      "@core/*": ["./core/*"]
+      "@core/*": ["./core/*"],
+      "@heroicons/react/outline": ["./node_modules/@heroicons/react/outline"]
     },
     "types": ["reflect-metadata"],
     "experimentalDecorators": true,
